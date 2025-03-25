@@ -18,12 +18,6 @@
         @vite('resources/css/app.css')
     </head>
     <body>
-        <h1 class="text-3xl text-red-200">
-            Hello world ! 
-        </h1>
-        <p class="text-blue-600 dark:text-sky-400">
-            test
-        </p>
         @inertia
     </body>
 </html>
