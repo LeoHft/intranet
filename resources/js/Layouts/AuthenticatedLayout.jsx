@@ -4,6 +4,10 @@ import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link, usePage } from '@inertiajs/react';
 import { useState } from 'react';
+import ToggleSwitch from '@/Components/ToggleSwitch';
+import { HouseWifi  } from "lucide-react";
+
+
 
 export default function AuthenticatedLayout({ header, children }) {
     const user = usePage().props.auth.user;
@@ -31,9 +35,19 @@ export default function AuthenticatedLayout({ header, children }) {
                                     Dashboard
                                 </NavLink>
                             </div>
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink
+                                    href={route('adminDashboard')}
+                                    active={route().current('adminDashboard')}
+                                >
+                                    Admin Dashboard
+                                </NavLink>
+                            </div>
                         </div>
 
                         <div className="hidden sm:ms-6 sm:flex sm:items-center">
+                            <ToggleSwitch />
+                            <HouseWifi />
                             <div className="relative ms-3">
                                 <Dropdown>
                                     <Dropdown.Trigger>

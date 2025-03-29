@@ -1,22 +1,35 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
+        'isAuthenticated' => Auth::check(),
         'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('welcome');
+
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    // This route is only accessible to authenticated users
+    return Inertia::render('Dashboard', [
+
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+
+Route::get('/adminDashboard', function () {
+    // This route is only accessible to authenticated users
+    return Inertia::render('AdminDashboard', [
+
+        ]);
+})->middleware(['auth', 'verified'])->name('adminDashboard');
 
 
 Route::middleware('auth')->group(function () {

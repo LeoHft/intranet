@@ -1,12 +1,8 @@
 import { useEffect, useState } from "react";
-import { usePage } from '@inertiajs/react';
 import { Head } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 
-
-
-export default function Dashboard({}) {
-    const user = usePage().props.auth.user;
+export default function AdminDashboard() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -18,9 +14,8 @@ export default function Dashboard({}) {
     return (
         <AuthenticatedLayout>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <Head title="Dashboard" />
-            <p className="font-serif text-3xl ">Bonjour, </p>
-            <p className="font-serif text-2xl" > {user.name} </p>
+            <Head title="AdminDashboard" />
+            <h1 className="text-red-500 animate-bounce"> ADM Dashboard</h1>
             <ul>
                 {data.map((post) => (
                     <li key={post.id}>{post.title}</li>

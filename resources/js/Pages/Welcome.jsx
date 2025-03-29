@@ -1,3 +1,4 @@
+import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, Link } from '@inertiajs/react';
 import React from 'react';
 
@@ -14,9 +15,12 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
     };
 
     return (
-        <>
+        <GuestLayout>
             <Head title="Welcome" />
-            <h1 className="text-red-50">Welcome</h1>
-        </>
+            <h1 className="text-red-500">Welcome</h1>
+            <Link href="/login">
+                <h1 className="text-red-500">Login</h1>
+            </Link>
+        </GuestLayout>
     );
 }
