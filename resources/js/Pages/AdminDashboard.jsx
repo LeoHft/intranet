@@ -6,9 +6,9 @@ import SecondaryButton from "@/Components/SecondaryButton";
 import PrimaryButton from "@/Components/PrimaryButton";
 import DangerButton from "@/Components/DangerButton";
 import AddServiceForm from "@/Components/AddServiceForm";
-import AddCategoryForm from "@/Components/AddCategoryForm";
+import AddCategoryForm from "@/Components/Category/AddCategoryForm";
 import { List } from "lucide-react";
-import ListCategory from "@/Components/ListCategory";
+import ListCategory from "@/Components/Category/ListCategory";
 
 
 export default function AdminDashboard() {

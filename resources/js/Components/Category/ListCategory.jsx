@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import SecondaryButton from "@/Components/SecondaryButton";
 import DangerButton from "@/Components/DangerButton";
-import ModifyCategoryForm from "@/Components/ModifyCategoryForm";
-import Modal from './Modal';
+import ModifyCategoryForm from "@/Components/Category/ModifyCategoryForm";
+import Modal from '../Modal';
 
 export default function ListCategory() {
     const [categoriesList, setCategoriesList] = useState([]);
