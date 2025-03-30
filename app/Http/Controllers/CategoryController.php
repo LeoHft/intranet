@@ -31,4 +31,29 @@ class CategoryController extends Controller
 
         return response()->json(['message' => 'Category created successfully'], 201);
     }
+
+    public function update(Request $request, $id)
+    {
+        $category = Categories::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|string',
+            'description' => 'required|string',
+        ]);
+
+        $category->update([
+            'Name' => $request->name,
+            'Description' => $request->description,
+        ]);
+
+        return response()->json(['message' => 'Category updated successfully'], 200);
+    }
+
+    public function destroy($id)
+    {
+        $category = Categories::findOrFail($id);
+        $category->delete();
+
+        return response()->json(['message' => 'Category deleted successfully'], 200);
+    }
 }

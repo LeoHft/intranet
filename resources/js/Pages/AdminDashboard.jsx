@@ -7,6 +7,8 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import DangerButton from "@/Components/DangerButton";
 import AddServiceForm from "@/Components/AddServiceForm";
 import AddCategoryForm from "@/Components/AddCategoryForm";
+import { List } from "lucide-react";
+import ListCategory from "@/Components/ListCategory";
 
 
 export default function AdminDashboard() {
@@ -40,7 +42,7 @@ export default function AdminDashboard() {
                     </TabsContent>
 
 
-                    <TabsContent value="Servicessettings" className="space-y-4">
+                    <TabsContent value="Servicessettings" className="space-y-8">
                         <AddServiceForm />
                         <table className="table-fixed border-collapse border border-gray-400">
                             <thead className="bg-gray-200">
@@ -77,19 +79,18 @@ export default function AdminDashboard() {
                         </table>
                     </TabsContent>
 
-                    <TabsContent value="CategoriesSettings">
-                        <p>Paramètres de catégories</p>
+                    <TabsContent value="CategoriesSettings" className="space-y-8">
                         <AddCategoryForm />
-
-
+                        <ListCategory />
                     </TabsContent>
 
 
-                    <TabsContent value="StatusSettings">
+                    <TabsContent value="StatusSettings" className="space-y-8">
                         <p>Paramètres de status</p>
                     </TabsContent>
 
-                    <TabsContent value="users">
+                    <TabsContent value="users" className="space-y-8">
+
                     </TabsContent>
                 </Tabs>
             </div>

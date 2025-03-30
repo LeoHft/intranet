@@ -7,7 +7,7 @@ export default function CategorySelect({ selectedCategories, setSelectedCategori
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        axios.get("/api/categories")
+        axios.get("/api/getCategories")
         .then((response) => {
             setCategories(response.data.map((category) => ({
                 value: category.id,
