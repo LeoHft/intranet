@@ -26,9 +26,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/adminDashboard', function () {
     // This route is only accessible to authenticated users
-    return Inertia::render('AdminDashboard', [
-
-        ]);
+    return Inertia::render('AdminDashboard', []);
 })->middleware(['auth', 'verified'])->name('adminDashboard');
 
 
