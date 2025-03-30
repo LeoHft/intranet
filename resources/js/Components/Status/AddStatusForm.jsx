@@ -8,15 +8,12 @@ import DangerButton from "@/Components/DangerButton";
 import Modal from "@/Components/Modal";
 import InputLabel from "../InputLabel";
 import TextInput from "../TextInput";
-import { Cat } from "lucide-react";
-import CategorySelect from "./CategorySelect";
-import StatusSelect from "../Status/StatusSelect";
 import { Transition } from '@headlessui/react';
 import { useForm } from '@inertiajs/react';
 import { useRef } from 'react';
 
-export default function AddCategoryForm() {
-    const [showingAddCategoryModal, setShowingAddCategoryModal] = useState(false);
+export default function AddStatusForm() {
+    const [showingAddStatusModal, setShowingAddStatusModal] = useState(false);
     const name = useRef();
     const description = useRef();
 
@@ -34,8 +31,8 @@ export default function AddCategoryForm() {
         description: '',
     });
 
-    const AddCategory = () => {
-        setShowingAddCategoryModal(true);
+    const AddStatus = () => {
+        setShowingAddStatusModal(true);
     }
 
     const handleSubmit = (e) => {
@@ -45,30 +42,30 @@ export default function AddCategoryForm() {
         console.log("Description:", data.description);
         console.log("Data:", data);
 
-        axios.post('/api/storeCategory', {
+        axios.post('/api/storeStatus', {
             name: data.name,
             description: data.description,
         })
         .then(response => {
-            console.log("Category added successfully:", response.data);
+            console.log("Status added successfully:", response.data);
             reset();
-            setShowingAddCategoryModal(false);
+            setShowingAddStatusModal(false);
         }).catch(error => {
-            console.error("Error adding Category:", error);
+            console.error("Error adding Status:", error);
         });
     }
 
     return (
         <section>
-            <PrimaryButton onClick={AddCategory}> Ajouter une catégorie </PrimaryButton>
+            <PrimaryButton onClick={AddStatus}> Ajouter un status </PrimaryButton>
 
-            <Modal show={showingAddCategoryModal} onClose={() => setShowingAddCategoryModal(false)}>
+            <Modal show={showingAddStatusModal} onClose={() => setShowingAddStatusModal(false)}>
                 <form onSubmit={handleSubmit} className="mt-6 p-6 space-y-6">
                     <h1 className="text-lg font-medium text-gray-900">
-                        Ajouter une catégorie
+                        Ajouter un status
                     </h1>
                     <div>
-                        <InputLabel htmlFor="name" value="Nom de la catégorie" />
+                        <InputLabel htmlFor="name" value="Nom du status" />
                         <TextInput
                             id="name"
                             ref={name}
@@ -76,7 +73,7 @@ export default function AddCategoryForm() {
                             onChange={(e) => setData('name', e.target.value)}
                             type="text"
                             className="mt-1 block w-full"
-                            placeholder="Nom de la catégorie"
+                            placeholder="Nom du status"
                             required
                         />
                     </div>
@@ -89,7 +86,7 @@ export default function AddCategoryForm() {
                             onChange={(e) => setData('description', e.target.value)}
                             type="text"
                             className="mt-1 block w-full"
-                            placeholder="Description de la catégorie"
+                            placeholder="Description du status"
                             required
                         />
                     </div>

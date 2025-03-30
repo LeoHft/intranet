@@ -1,0 +1,84 @@
+import { useEffect, useState, useRef } from "react";
+import Modal from "@/Components/Modal";
+import InputLabel from "../InputLabel";
+import TextInput from "../TextInput";
+import { useForm } from '@inertiajs/react';
+import axios from 'axios';
+import { Transition } from '@headlessui/react';
+
+
+export default function ModifyStatusForm({ status, onClose }) {
+    const [showingModifyStatusModal, setShowingModifyStatusModal] = useState(true);
+    const name = useRef();
+    const description = useRef();
+
+    const { data, setData, errors, processing, reset } = useForm({
+        name: '',
+        description: '',
+    });
+
+    useEffect(() => {
+        if (status) {
+            setData({
+                name: status.Name || '',
+                description: status.Description || '',
+            });
+        }
+    }, [status]);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        axios.put(`/api/updateStatus/${status.id}`, {
+            name: data.name,
+            description: data.description,
+        })
+        .then(response => {
+            console.log("status modified successfully:", response.data);
+            reset();
+            setShowingModifyStatusModal(false);
+            onClose(); 
+        }).catch(error => {
+            console.error("Error modifying status:", error);
+        });
+    };
+
+    return (
+        <Modal show={showingModifyStatusModal} onClose={() => { setShowingModifyStatusModal(false); onClose(); }}>
+            <form onSubmit={handleSubmit} className="mt-6 p-6 space-y-6">
+                <h1 className="text-lg font-medium text-gray-900">
+                    Modifier un status
+                </h1>
+                <div>
+                    <InputLabel htmlFor="name" value="Nom du status" />
+                    <TextInput
+                        id="name"
+                        ref={name}
+                        value={data.name}
+                        onChange={(e) => setData('name', e.target.value)}
+                        type="text"
+                        className="mt-1 block w-full"
+                        placeholder="Nom du status"
+                        required
+                    />
+                </div>
+                <div>
+                    <InputLabel htmlFor="description" value="Description" />
+                    <TextInput
+                        id="description"
+                        ref={description}
+                        value={data.description}
+                        onChange={(e) => setData('description', e.target.value)}
+                        type="text"
+                        className="mt-1 block w-full"
+                        placeholder="Description du status"
+                        required
+                    />
+                </div>
+                <button type="submit" className="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
+                    Valider
+                </button>
+            </form>
+        </Modal>
+    );
+}

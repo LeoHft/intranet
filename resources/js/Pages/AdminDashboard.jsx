@@ -9,6 +9,8 @@ import AddServiceForm from "@/Components/AddServiceForm";
 import AddCategoryForm from "@/Components/Category/AddCategoryForm";
 import { List } from "lucide-react";
 import ListCategory from "@/Components/Category/ListCategory";
+import AddStatusForm from "@/Components/Status/AddStatusForm";
+import ListStatus from "@/Components/Status/ListStatus";
 
 
 export default function AdminDashboard() {
@@ -86,8 +88,12 @@ export default function AdminDashboard() {
 
 
                     <TabsContent value="StatusSettings" className="space-y-8">
-                        <p>Paramètres de status</p>
+                        <AddStatusForm />
+                        <ListStatus />
                     </TabsContent>
+
+
+
 
                     <TabsContent value="users" className="space-y-8">
 

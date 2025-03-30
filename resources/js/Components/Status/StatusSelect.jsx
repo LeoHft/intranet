@@ -7,7 +7,7 @@ export default function StatusSelect({ selectedStatus, setSelectedStatus }) {
     const [status, setStatus] = useState([]);
 
     useEffect(() => {
-        axios.get("/api/status")
+        axios.get("/api/getStatus")
         .then((response) => {
             setStatus(response.data.map((status) => ({
                 value: status.id,

@@ -10,7 +10,7 @@ import InputLabel from "./InputLabel";
 import TextInput from "./TextInput";
 import { Cat } from "lucide-react";
 import CategorySelect from "./Category/CategorySelect";
-import StatusSelect from "./Category/StatusSelect";
+import StatusSelect from "./Status/StatusSelect";
 import { Transition } from '@headlessui/react';
 import { useForm } from '@inertiajs/react';
 import { useRef } from 'react';
