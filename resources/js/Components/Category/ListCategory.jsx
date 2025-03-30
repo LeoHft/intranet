@@ -4,6 +4,7 @@ import SecondaryButton from "@/Components/SecondaryButton";
 import DangerButton from "@/Components/DangerButton";
 import ModifyCategoryForm from "@/Components/Category/ModifyCategoryForm";
 import Modal from '../Modal';
+import dayjs from 'dayjs';
 
 export default function ListCategory() {
     const [categoriesList, setCategoriesList] = useState([]);
@@ -63,8 +64,8 @@ export default function ListCategory() {
                         <tr key={category.id} className="border border-gray-400">
                             <td className="border border-gray-400 px-4">{category.Name}</td>
                             <td className="border border-gray-400 px-4">{category.Description}</td>
-                            <td className="border border-gray-400 px-4">{category.created_at}</td>
-                            <td className="border border-gray-400 px-4">{category.updated_at}</td>
+                            <td className="border border-gray-400 px-4">{dayjs(category.created_at).format('DD/MM/YYYY HH:mm')}</td>
+                            <td className="border border-gray-400 px-4">{dayjs(category.updated_at).format('DD/MM/YYYY HH:mm')}</td>
                             <td className="flex gap-2 content-center items-center justify-center py-1">
                                 <SecondaryButton onClick={() => ModifyCategory(category)}>Modifier</SecondaryButton>
                                 <DangerButton onClick={() => DeleteCategoryShow(category)}>Supprimer</DangerButton>

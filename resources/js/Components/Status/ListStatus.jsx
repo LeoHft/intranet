@@ -4,6 +4,8 @@ import SecondaryButton from "@/Components/SecondaryButton";
 import DangerButton from "@/Components/DangerButton";
 import ModifyStatusForm from "@/Components/Status/ModifyStatusForm";
 import Modal from '../Modal';
+import dayjs from 'dayjs';
+
 
 export default function ListStatus() {
     const [StatusList, setStatusList] = useState([]);
@@ -64,8 +66,8 @@ export default function ListStatus() {
                         <tr key={status.id} className="border border-gray-400">
                             <td className="border border-gray-400 px-4">{status.Name}</td>
                             <td className="border border-gray-400 px-4">{status.Description}</td>
-                            <td className="border border-gray-400 px-4">{status.created_at}</td>
-                            <td className="border border-gray-400 px-4">{status.updated_at}</td>
+                            <td className="border border-gray-400 px-4">{dayjs(status.created_at).format('DD/MM/YYYY HH:mm')}</td>
+                            <td className="border border-gray-400 px-4">{dayjs(status.updated_at).format('DD/MM/YYYY HH:mm')}</td>
                             <td className="flex gap-2 content-center items-center justify-center py-1">
                                 <SecondaryButton onClick={() => ModifyStatus(status)}>Modifier</SecondaryButton>
                                 <DangerButton onClick={() => DeleteStatusShow(status)}>Supprimer</DangerButton>

@@ -4,7 +4,6 @@ import InputLabel from "../InputLabel";
 import TextInput from "../TextInput";
 import { useForm } from '@inertiajs/react';
 import axios from 'axios';
-import { Transition } from '@headlessui/react';
 
 
 export default function ModifyStatusForm({ status, onClose }) {

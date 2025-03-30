@@ -11,7 +11,7 @@ export default function StatusSelect({ selectedStatus, setSelectedStatus }) {
         .then((response) => {
             setStatus(response.data.map((status) => ({
                 value: status.id,
-                label: status.name,
+                label: status.Name,
             })));
         }).catch((error) => {
             console.error("Error fetching status:", error);

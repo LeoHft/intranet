@@ -1,17 +1,8 @@
-import { useEffect, useState } from "react";
-import { Head } from "@inertiajs/react";
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/Components/Tabs";
-import SecondaryButton from "@/Components/SecondaryButton";
+import {useState } from "react";
 import PrimaryButton from "@/Components/PrimaryButton";
-import DangerButton from "@/Components/DangerButton";
 import Modal from "@/Components/Modal";
 import InputLabel from "../InputLabel";
 import TextInput from "../TextInput";
-import { Cat } from "lucide-react";
-import CategorySelect from "./CategorySelect";
-import StatusSelect from "../Status/StatusSelect";
-import { Transition } from '@headlessui/react';
 import { useForm } from '@inertiajs/react';
 import { useRef } from 'react';
 
