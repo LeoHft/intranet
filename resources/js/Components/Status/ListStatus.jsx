@@ -5,6 +5,7 @@ import DangerButton from "@/Components/DangerButton";
 import ModifyStatusForm from "@/Components/Status/ModifyStatusForm";
 import Modal from '../Modal';
 import dayjs from 'dayjs';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 export default function ListStatus() {
@@ -17,11 +18,11 @@ export default function ListStatus() {
     useEffect(() => {
         axios.get('/api/getStatus')
             .then(response => {
-                console.log("Status fetched successfully:", response.data);
                 setStatusList(response.data);
             })
             .catch(error => {
                 console.error("Error fetching Status:", error);
+                toast.error('Erreur lors de la récupération des statuts');
             });
     }, []);
 
@@ -39,11 +40,12 @@ export default function ListStatus() {
         e.preventDefault();
         axios.delete(`/api/deleteStatus/${selectedStatus.id}`)
             .then(response => {
-                console.log("Status deleted successfully:", response.data);
+                toast.success('Statut supprimé avec succès');
                 setStatusList(StatusList.filter(stat => stat.id !== selectedStatus.id));
                 setShowModalDeleteStatus(false);
             })
             .catch(error => {
+                toast.error('Erreur lors de la suppression du statut');
                 console.error("Error deleting Status:", error);
             });
     }
@@ -76,7 +78,7 @@ export default function ListStatus() {
                     ))
                 ) : (
                     <tr>
-                        <td colSpan="3" className="text-center py-4">
+                        <td colSpan="5" className="text-center text-gray-500 py-4 ">
                             Aucun status trouvée.
                         </td>
                     </tr>
@@ -103,7 +105,7 @@ export default function ListStatus() {
                 </div>
             </form>
         </Modal>
-
+        <Toaster />
         </>
     );
 }

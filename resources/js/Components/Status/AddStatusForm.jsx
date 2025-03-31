@@ -5,6 +5,7 @@ import InputLabel from "../InputLabel";
 import TextInput from "../TextInput";
 import { useForm } from '@inertiajs/react';
 import { useRef } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function AddStatusForm() {
     const [showingAddStatusModal, setShowingAddStatusModal] = useState(false);
@@ -15,11 +16,7 @@ export default function AddStatusForm() {
     const {
         data,
         setData,
-        errors,
-        post,
-        processing,
         reset,
-        recentlySuccessful,
     } = useForm({
         name: '',
         description: '',
@@ -31,21 +28,17 @@ export default function AddStatusForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Form submitted");
-        console.log("Name:", data.name);
-        console.log("Description:", data.description);
-        console.log("Data:", data);
-
         axios.post('/api/storeStatus', {
             name: data.name,
             description: data.description,
         })
         .then(response => {
-            console.log("Status added successfully:", response.data);
+            toast.success('Statut ajouté avec succès');
             reset();
             setShowingAddStatusModal(false);
         }).catch(error => {
             console.error("Error adding Status:", error);
+            toast.error('Erreur lors de l\'ajout du statut');
         });
     }
 
@@ -90,6 +83,7 @@ export default function AddStatusForm() {
                     
                 </form>
             </Modal>
+            <Toaster />
         </section>
 
     );

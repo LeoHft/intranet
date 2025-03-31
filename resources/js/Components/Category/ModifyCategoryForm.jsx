@@ -4,7 +4,7 @@ import InputLabel from "../InputLabel";
 import TextInput from "../TextInput";
 import { useForm } from '@inertiajs/react';
 import axios from 'axios';
-import { Transition } from '@headlessui/react';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 export default function ModifyCategoryForm({ category, onClose }) {
@@ -12,7 +12,7 @@ export default function ModifyCategoryForm({ category, onClose }) {
     const name = useRef();
     const description = useRef();
 
-    const { data, setData, errors, processing, reset } = useForm({
+    const { data, setData, reset } = useForm({
         name: '',
         description: '',
     });
@@ -34,12 +34,13 @@ export default function ModifyCategoryForm({ category, onClose }) {
             description: data.description,
         })
         .then(response => {
-            console.log("Category modified successfully:", response.data);
+            toast.success('Catégorie modifiée avec succès');
             reset();
             setShowingModifyCategoryModal(false);
             onClose(); 
         }).catch(error => {
             console.error("Error modifying Category:", error);
+            toast.error('Erreur lors de la modification de la catégorie');
         });
     };
 
@@ -79,6 +80,7 @@ export default function ModifyCategoryForm({ category, onClose }) {
                     Valider
                 </button>
             </form>
+            <Toaster />
         </Modal>
     );
 }

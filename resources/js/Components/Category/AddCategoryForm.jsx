@@ -5,6 +5,7 @@ import InputLabel from "../InputLabel";
 import TextInput from "../TextInput";
 import { useForm } from '@inertiajs/react';
 import { useRef } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function AddCategoryForm() {
     const [showingAddCategoryModal, setShowingAddCategoryModal] = useState(false);
@@ -15,11 +16,7 @@ export default function AddCategoryForm() {
     const {
         data,
         setData,
-        errors,
-        post,
-        processing,
         reset,
-        recentlySuccessful,
     } = useForm({
         name: '',
         description: '',
@@ -41,11 +38,12 @@ export default function AddCategoryForm() {
             description: data.description,
         })
         .then(response => {
-            console.log("Category added successfully:", response.data);
             reset();
             setShowingAddCategoryModal(false);
+            toast.success('Catégorie ajouter avec succès');
         }).catch(error => {
             console.error("Error adding Category:", error);
+            toast.error('Erreur lors de l\'ajout de la catégorie');
         });
     }
 
@@ -90,6 +88,7 @@ export default function AddCategoryForm() {
                     
                 </form>
             </Modal>
+            <Toaster />
         </section>
 
     );

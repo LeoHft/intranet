@@ -4,6 +4,7 @@ import InputLabel from "../InputLabel";
 import TextInput from "../TextInput";
 import { useForm } from '@inertiajs/react';
 import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 export default function ModifyStatusForm({ status, onClose }) {
@@ -11,7 +12,7 @@ export default function ModifyStatusForm({ status, onClose }) {
     const name = useRef();
     const description = useRef();
 
-    const { data, setData, errors, processing, reset } = useForm({
+    const { data, setData, reset } = useForm({
         name: '',
         description: '',
     });
@@ -33,12 +34,13 @@ export default function ModifyStatusForm({ status, onClose }) {
             description: data.description,
         })
         .then(response => {
-            console.log("status modified successfully:", response.data);
+            toast.success('Statut modifié avec succès');
             reset();
             setShowingModifyStatusModal(false);
             onClose(); 
         }).catch(error => {
             console.error("Error modifying status:", error);
+            toast.error('Erreur lors de la modification du statut');
         });
     };
 
@@ -78,6 +80,7 @@ export default function ModifyStatusForm({ status, onClose }) {
                     Valider
                 </button>
             </form>
+            <Toaster />
         </Modal>
     );
 }

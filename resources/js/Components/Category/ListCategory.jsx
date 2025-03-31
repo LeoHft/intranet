@@ -5,6 +5,7 @@ import DangerButton from "@/Components/DangerButton";
 import ModifyCategoryForm from "@/Components/Category/ModifyCategoryForm";
 import Modal from '../Modal';
 import dayjs from 'dayjs';
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function ListCategory() {
     const [categoriesList, setCategoriesList] = useState([]);
@@ -19,6 +20,7 @@ export default function ListCategory() {
                 setCategoriesList(response.data);
             })
             .catch(error => {
+                toast.error('Erreur lors de la récupération des catégories');
                 console.error("Error fetching categories:", error);
             });
     }, []);
@@ -37,12 +39,13 @@ export default function ListCategory() {
         e.preventDefault();
         axios.delete(`/api/deleteCategory/${selectedCategory.id}`)
             .then(response => {
-                console.log("Category deleted successfully:", response.data);
+                toast.success('Catégorie supprimée avec succès');
                 setCategoriesList(categoriesList.filter(cat => cat.id !== selectedCategory.id));
                 setShowModalDeleteCategory(false);
             })
             .catch(error => {
                 console.error("Error deleting category:", error);
+                toast.error('Erreur lors de la suppression de la catégorie');
             });
     }
 
@@ -74,7 +77,7 @@ export default function ListCategory() {
                     ))
                 ) : (
                     <tr>
-                        <td colSpan="3" className="text-center py-4">
+                        <td colSpan="5" className="text-center text-gray-500 py-4">
                             Aucune catégorie trouvée.
                         </td>
                     </tr>
@@ -101,7 +104,7 @@ export default function ListCategory() {
                 </div>
             </form>
         </Modal>
-
+        <Toaster />
         </>
     );
 }
