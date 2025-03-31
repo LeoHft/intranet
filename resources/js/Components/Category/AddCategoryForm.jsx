@@ -35,7 +35,7 @@ export default function AddCategoryForm() {
         .then(response => {
             reset();
             setShowingAddCategoryModal(false);
-            toast.success('Catégorie ajouter avec succès');
+            toast.success('Catégorie ajoutée avec succès');
         }).catch(error => {
             console.error("Error adding Category:", error);
             toast.error('Erreur lors de l\'ajout de la catégorie');
