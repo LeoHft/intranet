@@ -36,7 +36,6 @@ class ServicesController extends Controller
             'CloudflareUrl' => $request->external_url,
             'ImageUrl' => $imageUrl,
             'StatusId' => $request->status_id,
-            'StatusId' => $request->status_id,
         ]);
 
         if ($service) {
@@ -54,7 +53,7 @@ class ServicesController extends Controller
 
     public function getServices(): JsonResponse
     {
-        $services = Services::with('categories')->get();
+        $services = Services::with('categories')->with('status')->get();
         return response()->json($services);
     }
 
@@ -65,7 +64,7 @@ class ServicesController extends Controller
             'description' => 'required|string',
             'internal_url' => 'required|string',
             'external_url' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'optional|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $service = Services::findOrFail($id);

@@ -13,6 +13,7 @@ import AddStatusForm from "@/Components/Status/AddStatusForm";
 import ListStatus from "@/Components/Status/ListStatus";
 import ListUsers from "@/Components/Users/ListUsers";
 import AddUserForm from "@/Components/Users/AddUserForm";
+import ListServices from "@/Components/Services/ListServices";
 
 
 export default function AdminDashboard() {
@@ -48,39 +49,7 @@ export default function AdminDashboard() {
 
                     <TabsContent value="Servicessettings" className="space-y-8">
                         <AddServiceForm />
-                        <table className="table-fixed border-collapse border border-gray-400">
-                            <thead className="bg-gray-200">
-                                <tr className="border border-gray-400">
-                                    <th className="border border-gray-400 px-4">Nom</th>
-                                    <th className="border border-gray-400 px-4">Description</th>
-                                    <th className="border border-gray-400 px-4">Url interne</th>
-                                    <th className="border border-gray-400 px-4">Url externe</th>
-                                    <th className="border border-gray-400 px-4">Image</th>
-                                    <th className="border border-gray-400 px-4">Catégorie(s)</th>
-                                    <th className="border border-gray-400 px-4">Status actuel</th>
-                                    <th className="border border-gray-400 px-4">Date d'ajout</th>
-                                    <th className="border border-gray-400 px-4">Date de modificaton</th>
-                                    <th className="border border-gray-400 px-4">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody className="border border-gray-400">
-                                <tr className="border border-gray-400">
-                                    <td className="px-4 border border-gray-400 px-4">Service 1</td>
-                                    <td className="px-4 border border-gray-400 px-4">Description du service 1</td>
-                                    <td className="px-4 border border-gray-400 px-4">https://example.com/service1</td>
-                                    <td className="px-4 border border-gray-400 px-4">https://external.com/service1</td>
-                                    <td className="px-4 border border-gray-400 px-4">image1.jpg</td>
-                                    <td className="px-4 border border-gray-400 px-4">Catégorie 1</td>
-                                    <td className="px-4 border border-gray-400 px-4">Actif</td>
-                                    <td className="px-4 border border-gray-400 px-4">2023-10-01</td>
-                                    <td className="px-4 border border-gray-400 px-4">2023-10-02</td>
-                                    <td className="px-4 border border-gray-400 px-4">
-                                        <SecondaryButton>Modifier</SecondaryButton>
-                                        <DangerButton>Supprimer</DangerButton>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <ListServices />
                     </TabsContent>
 
                     <TabsContent value="CategoriesSettings" className="space-y-8">

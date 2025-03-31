@@ -2,37 +2,42 @@ import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import axios from "axios";
 
-
 export default function StatusSelect({ selectedStatus, setSelectedStatus }) {
-    const [status, setStatus] = useState([]);
+    const [statusOptions, setStatusOptions] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         axios.get("/api/getStatus")
-        .then((response) => {
-            setStatus(response.data.map((status) => ({
-                value: status.id,
-                label: status.Name,
-            })));
-        }).catch((error) => {
-            console.error("Error fetching status:", error);
-        });
-    },  []);
+            .then((response) => {
+                setStatusOptions(response.data.map((status) => ({
+                    value: status.id,
+                    label: status.Name, // Garde la majuscule
+                })));
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error("Erreur lors de la récupération des statuts:", error);
+                setLoading(false);
+            });
+    }, []);
 
     return (
         <div>
             <label className="block text-sm font-medium text-gray-700">Statut</label>
-            <Select
-                options={status}
-                className="mt-1 block w-full"
-                value={selectedStatus}
-                onChange={setSelectedStatus}
-                placeholder="Sélectionnez un satut..."
-                styles={{
-                    menu: base => ({ ...base, maxHeight: "150px", overflowY: "auto" }) // Limite la hauteur et permet le scroll                    
-                }}
-            />
+            {loading ? (
+                <p className="text-sm text-gray-500">Chargement des statuts...</p>
+            ) : (
+                <Select
+                    options={statusOptions}
+                    className="mt-1 block w-full"
+                    value={selectedStatus || null}
+                    onChange={setSelectedStatus}
+                    placeholder="Sélectionnez un statut..."
+                    styles={{
+                        menu: base => ({ ...base, maxHeight: "150px", overflowY: "auto" })
+                    }}
+                />
+            )}
         </div>
-
     );
-
 }

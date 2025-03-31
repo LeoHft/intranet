@@ -14,6 +14,7 @@ import StatusSelect from "@/Components//Status/StatusSelect";
 import { Transition } from '@headlessui/react';
 import { useForm } from '@inertiajs/react';
 import { useRef } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function AddServiceForm() {
     const [showingAddServiceModal, setShowingAddServiceModal] = useState(false);
@@ -50,16 +51,6 @@ export default function AddServiceForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Form submitted");
-        console.log("Selected categories:", selectedCategories);
-        console.log("Selected status:", selectedStatus);
-        console.log("Name:", data.name);
-        console.log("Description:", data.description);
-        console.log("Internal URL:", data.internal_url);
-        console.log("External URL:", data.external_url);
-        console.log("Data:", data);
-        
-
         const formData = new FormData();
         formData.append('name', data.name);
         formData.append('description', data.description);
@@ -73,11 +64,13 @@ export default function AddServiceForm() {
             headers: { 'Content-Type': 'multipart/form-data' }
         })
         .then(response => {
+            toast.success('Service ajouté avec succès');
             console.log("Service ajouté :", response.data);
             reset();
             setShowingAddServiceModal(false);
         })
         .catch(error => {
+            toast.error('Erreur lors de l\'ajout du service');
             console.error("Erreur :", error);
         });
     }
@@ -167,6 +160,7 @@ export default function AddServiceForm() {
                     
                 </form>
             </Modal>
+            <Toaster />
         </section>
 
     );
