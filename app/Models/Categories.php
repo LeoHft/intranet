@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Categories extends Model
 {
@@ -13,5 +14,15 @@ class Categories extends Model
         'Name',
         'Description',
     ];
+
+    public function services(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Services::class,
+            'categories_services',
+            'CategoryId',
+            'ServiceId'
+        );
+    }
 
 }

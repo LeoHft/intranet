@@ -57,24 +57,28 @@ export default function AddServiceForm() {
         console.log("Description:", data.description);
         console.log("Internal URL:", data.internal_url);
         console.log("External URL:", data.external_url);
-        console.log("Image:", data.image);
         console.log("Data:", data);
+        
 
-        axios.post('/api/storeService', {
-            name: data.name,
-            description: data.description,
-            internal_url: data.internal_url,
-            external_url: data.external_url,
-            image_url: data.image,
-            category_id: selectedCategories.map(category => category.value),
-            status_id: selectedStatus.value,
+        const formData = new FormData();
+        formData.append('name', data.name);
+        formData.append('description', data.description);
+        formData.append('internal_url', data.internal_url);
+        formData.append('external_url', data.external_url);
+        formData.append('image', data.image);
+        formData.append('category_id', JSON.stringify(selectedCategories.map(category => category.value)));
+        formData.append('status_id', selectedStatus?.value || '');
+    
+        axios.post('/api/storeService', formData, {
+            headers: { 'Content-Type': 'multipart/form-data' }
         })
         .then(response => {
-            console.log("Service added successfully:", response.data);
+            console.log("Service ajouté :", response.data);
             reset();
             setShowingAddServiceModal(false);
-        }).catch(error => {
-            console.error("Error adding service:", error);
+        })
+        .catch(error => {
+            console.error("Erreur :", error);
         });
     }
 
@@ -149,13 +153,11 @@ export default function AddServiceForm() {
                     />
                     <div>
                         <InputLabel htmlFor="image" value="Image" />
-                        <TextInput
+                        <input
                             id="image"
-                            ref={image}
-                            value={data.image}
-                            onChange={(e) => setData('image', e.target.value)}
-                            type="text"
+                            type="file"
                             className="mt-1 block w-full"
+                            onChange={(e) => setData('image', e.target.files[0])}
                             required
                         />
                     </div>

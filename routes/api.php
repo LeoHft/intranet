@@ -18,8 +18,11 @@ Route::get('/posts', function () {
 // Route::middleware('auth:sanctum')->group(function () {
 
 
+    //Services
+    Route::get('/getServices', 'App\Http\Controllers\ServicesController@getServices'); // Récupère les services
     Route::post('/storeService', 'App\Http\Controllers\ServicesController@store'); // Enregistre un service 
-
+    Route::put('/updateService/{id}', 'App\Http\Controllers\ServicesController@update'); // Modifie un service
+    Route::delete('/deleteService/{id}', 'App\Http\Controllers\ServicesController@destroy'); // Supprime un service
 
     //Catégories
     Route::get('/getCategories', 'App\Http\Controllers\CategoryController@getCategory'); // Récupère les catégories

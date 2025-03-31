@@ -1,40 +1,111 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Categories;
+use App\Models\CategoriesServices;
 use App\Models\Services;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Http\JsonResponse;
+
 
 class ServicesController extends Controller
 {
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string',
+            'name' => 'required|string|max:255',
             'description' => 'required|string',
             'internal_url' => 'required|string',
             'external_url' => 'required|string',
-            'image_url' => 'required|string',
-            'category_id' => 'required|array', // Le champ doit être un tableau
-            'category_id.*' => 'integer|exists:categories,id', // Chaque élément du tableau doit être un entier existant
-            'status_id' => 'required|integer|exists:status,id', 
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-        
 
-        Services::create([
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+            $imageUrl = asset('storage/' . $imagePath);
+        } else {
+            $imageUrl = null;
+        }
+        
+        $service = Services::create([
             'Name' => $request->name,
             'Description' => $request->description,
             'WifiUrl' => $request->internal_url,
             'CloudflareUrl' => $request->external_url,
-            'ImageUrl' => $request->image_url,
+            'ImageUrl' => $imageUrl,
+            'StatusId' => $request->status_id,
             'StatusId' => $request->status_id,
         ]);
 
+        if ($service) {
+            foreach (json_decode($request->category_id) as $categoryId) {
+                CategoriesServices::create([
+                    'CategoryId' => $categoryId,
+                    'ServiceId' => $service->id,
+                ]);
+            }
 
+        }
 
+        return response()->json(['message' => 'Service created successfully', 'service' => $service], 201);
+    }
 
+    public function getServices(): JsonResponse
+    {
+        $services = Services::with('categories')->get();
+        return response()->json($services);
+    }
 
+    public function update(Request $request, $id): JsonResponse
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'internal_url' => 'required|string',
+            'external_url' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
-        return response()->json(['message' => 'Service created successfully'], 201);
+        $service = Services::findOrFail($id);
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+            $imageUrl = asset('storage/' . $imagePath);
+        } else {
+            $imageUrl = $service->ImageUrl;
+        }
+
+        $service->update([
+            'Name' => $request->name,
+            'Description' => $request->description,
+            'WifiUrl' => $request->internal_url,
+            'CloudflareUrl' => $request->external_url,
+            'ImageUrl' => $imageUrl,
+            'StatusId' => $request->status_id,
+        ]);
+
+        // Update categories
+        CategoriesServices::where('ServiceId', $id)->delete();
+        foreach (json_decode($request->category_id) as $categoryId) {
+            CategoriesServices::create([
+                'CategoryId' => $categoryId,
+                'ServiceId' => $service->id,
+            ]);
+        }
+
+        return response()->json(['message' => 'Service updated successfully', 'service' => $service], 200);
+    }
+
+    public function destroy($id): JsonResponse
+    {
+        $service = Services::findOrFail($id);
+        $service->delete();
+
+        // Delete associated categories
+        CategoriesServices::where('ServiceId', $id)->delete();
+
+        return response()->json(['message' => 'Service deleted successfully'], 200);
     }
 }
