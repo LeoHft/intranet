@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/Components/Tabs";
 import SecondaryButton from "@/Components/SecondaryButton";
 import PrimaryButton from "@/Components/PrimaryButton";
 import DangerButton from "@/Components/DangerButton";
-import AddServiceForm from "@/Components/AddServiceForm";
+import AddServiceForm from "@/Components/Services/AddServiceForm";
 import AddCategoryForm from "@/Components/Category/AddCategoryForm";
 import { List } from "lucide-react";
 import ListCategory from "@/Components/Category/ListCategory";

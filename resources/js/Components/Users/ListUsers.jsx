@@ -56,6 +56,7 @@ export default function ListUsers() {
                 <tr className="border border-gray-400">
                     <th className="border border-gray-400 px-4">Nom</th>
                     <th className="border border-gray-400 px-4">Email</th>
+                    <th className="border border-gray-400 px-4">Applications autorisées</th>
                     <th className="border border-gray-400 px-4">Date d'ajout</th>
                     <th className="border border-gray-400 px-4">Date de modification</th>
                     <th className="border border-gray-400 px-4">Actions</th>
@@ -67,6 +68,7 @@ export default function ListUsers() {
                         <tr key={user.id} className="border border-gray-400">
                             <td className="border border-gray-400 px-4">{user.name}</td>
                             <td className="border border-gray-400 px-4">{user.email}</td>
+                            <td className="border border-gray-400 px-4"></td> {/* {user.applications.map(app => app.name).join(', ')} */}
                             <td className="border border-gray-400 px-4">{dayjs(user.created_at).format('DD/MM/YYYY HH:mm')}</td>
                             <td className="border border-gray-400 px-4">{dayjs(user.updated_at).format('DD/MM/YYYY HH:mm')}</td>
                             <td className="flex gap-2 content-center items-center justify-center py-1">
