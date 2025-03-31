@@ -33,6 +33,12 @@ Route::get('/posts', function () {
     Route::put('/updateStatus/{id}', 'App\Http\Controllers\StatusController@update'); // Modifie un status
     Route::delete('/deleteStatus/{id}', 'App\Http\Controllers\StatusController@destroy'); // Supprime un status
 
+    //utilisateurs
+    Route::get('/getUsers', 'App\Http\Controllers\UserController@getUsers'); // Récupère les utilisateurs
+    Route::post('/storeUser', 'App\Http\Controllers\UserController@store'); // Enregistre un utilisateur
+    Route::put('/updateUser/{id}', 'App\Http\Controllers\UserController@update'); // Modifie un utilisateur
+    Route::delete('/deleteUser/{id}', 'App\Http\Controllers\UserController@destroy'); // Supprime un utilisateur
+
 // });
 
 // require __DIR__.'/auth.php';

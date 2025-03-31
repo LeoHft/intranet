@@ -11,6 +11,8 @@ import { List } from "lucide-react";
 import ListCategory from "@/Components/Category/ListCategory";
 import AddStatusForm from "@/Components/Status/AddStatusForm";
 import ListStatus from "@/Components/Status/ListStatus";
+import ListUsers from "@/Components/Users/ListUsers";
+import AddUserForm from "@/Components/Users/AddUserForm";
 
 
 export default function AdminDashboard() {
@@ -96,6 +98,8 @@ export default function AdminDashboard() {
 
 
                     <TabsContent value="users" className="space-y-8">
+                        <AddUserForm />
+                        <ListUsers />
 
                     </TabsContent>
                 </Tabs>

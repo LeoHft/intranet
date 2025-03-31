@@ -7,19 +7,8 @@ use Illuminate\Support\Facades\Log;
 
 class ServicesController extends Controller
 {
-    public function getStatus() {
-        return response()->json([
-            ['id' => 1, 'name' => 'Status 1'],
-            ['id' => 2, 'name' => 'Status 2'],
-            ['id' => 3, 'name' => 'Status 3'],
-            ['id' => 4, 'name' => 'Status 4'],
-            ['id' => 5, 'name' => 'Status 5'],
-        ]);
-    }
-
     public function store(Request $request)
     {
-        Log::info($request->all());
         $request->validate([
             'name' => 'required|string',
             'description' => 'required|string',

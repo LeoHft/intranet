@@ -28,11 +28,6 @@ export default function AddCategoryForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Form submitted");
-        console.log("Name:", data.name);
-        console.log("Description:", data.description);
-        console.log("Data:", data);
-
         axios.post('/api/storeCategory', {
             name: data.name,
             description: data.description,
