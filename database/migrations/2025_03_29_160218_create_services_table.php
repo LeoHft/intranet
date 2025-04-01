@@ -32,7 +32,7 @@ return new class extends Migration
             $table->string('WifiUrl')->nullable();
             $table->string('CloudflareUrl')->nullable();
             $table->string('ImageUrl');
-            $table->foreignId('StatusId')->nullable()->constrained('status');
+            $table->foreignId('StatusId')->nullable()->constrained('status')->nullOnDelete();
             $table->timestamps();
         });
 
