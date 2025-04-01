@@ -7,15 +7,19 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
     public function getUsers()
     {
-        $users = User::select('id', 'name', 'email', 'created_at', 'updated_at')->get();
+        $users = User::select('id', 'name', 'email', 'created_at', 'updated_at')->with('services')->get();
+        Log::info('Users retrieved successfully', ['users' => $users]);
 
         return response()->json($users);
     }
+
+    
     public function store(Request $request)
     {
         $request->validate([

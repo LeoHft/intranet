@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -44,5 +45,15 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function services(): BelongsToMany 
+    {
+        return $this->belongsToMany(
+            Services::class, // Modèle associé
+            'services_access', // Nom de la table pivot
+            'UserId', // Clé étrangère du modèle actuel dans la table pivot
+            'ServiceId' // Clé étrangère du modèle associé dans la table pivot
+        );
     }
 }

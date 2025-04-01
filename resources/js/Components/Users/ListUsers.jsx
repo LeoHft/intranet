@@ -17,6 +17,7 @@ export default function ListUsers() {
     useEffect(() => {
         axios.get('/api/getUsers')
             .then(response => {
+                console.log("Users fetched:", response.data); // Debugging line
                 setUsersList(response.data);
             })
             .catch(error => {
@@ -68,7 +69,13 @@ export default function ListUsers() {
                         <tr key={user.id} className="border border-gray-400">
                             <td className="border border-gray-400 px-4">{user.name}</td>
                             <td className="border border-gray-400 px-4">{user.email}</td>
-                            <td className="border border-gray-400 px-4"></td> {/* {user.applications.map(app => app.name).join(', ')} */}
+                            <td className="border border-gray-400 px-4">
+                                {user.services.map(service => (
+                                    <span key={service.id} className="inline-block bg-gray-200 text-gray-700 px-2 py-1 mb-1 mt-1 rounded-full text-sm mr-2 hover:bg-gray-300">
+                                        {service.Name}
+                                    </span>
+                                ))}
+                            </td>
                             <td className="border border-gray-400 px-4">{dayjs(user.created_at).format('DD/MM/YYYY HH:mm')}</td>
                             <td className="border border-gray-400 px-4">{dayjs(user.updated_at).format('DD/MM/YYYY HH:mm')}</td>
                             <td className="flex gap-2 content-center items-center justify-center py-1">

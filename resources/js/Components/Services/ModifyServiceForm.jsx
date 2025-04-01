@@ -7,10 +7,12 @@ import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 import CategorySelect from "@/Components/Category/CategorySelect";
 import StatusSelect from "@/Components/Status/StatusSelect";
+import UsersSelect from "../Users/UsersSelect";
 
 export default function ModifyServiceForm({ service, onClose }) {
     const [showingModifyServiceModal, setShowingModifyServiceModal] = useState(true);
     const [selectedCategories, setSelectedCategories] = useState([]);
+    const [selectedUsers, setSelectedUsers] = useState([]);
     const [selectedStatus, setSelectedStatus] = useState(null);
     const [imageFile, setImageFile] = useState(null);
 
@@ -21,6 +23,7 @@ export default function ModifyServiceForm({ service, onClose }) {
         cloudflareUrl: '',
         image: '',
         categories: [],
+        users: [],
         status: null,
     });
 
@@ -33,10 +36,12 @@ export default function ModifyServiceForm({ service, onClose }) {
                 cloudflareUrl: service.CloudflareUrl || '',
                 image: service.ImageUrl || '',
                 categories: service.categories?.map(cat => ({ value: cat.id, label: cat.Name })) || [],
+                users: service.users?.map(user => ({ value: user.id, label: user.name })) || [],
                 status: service.status ? { value: service.status.id, label: service.status.Name } : null,
             });
     
             setSelectedCategories(service.categories?.map(cat => ({ value: cat.id, label: cat.Name })) || []);
+            setSelectedUsers(service.users?.map(user => ({ value: user.id, label: user.name })) || []);
             setSelectedStatus(service.status ? { value: service.status.id, label: service.status.Name } : null);
         }
     }, [service]);
@@ -53,6 +58,7 @@ export default function ModifyServiceForm({ service, onClose }) {
             formData.append('image', imageFile); // Ajout du fichier
         }
         formData.append('category_id', JSON.stringify(selectedCategories.map(cat => cat.value)));
+        formData.append('user_id', JSON.stringify(selectedUsers.map(user => user.value)));
         formData.append('status_id', selectedStatus?.value || '');
     
         try {
@@ -145,6 +151,10 @@ export default function ModifyServiceForm({ service, onClose }) {
                 <StatusSelect
                     selectedStatus={selectedStatus}
                     setSelectedStatus={setSelectedStatus}
+                />
+                <UsersSelect
+                    selectedUsers={selectedUsers}
+                    setSelectedUsers={setSelectedUsers}
                 />
                 <button type="submit" className="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
                     Valider

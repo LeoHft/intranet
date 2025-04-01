@@ -32,4 +32,14 @@ class Services extends Model
         return $this->belongsTo(Status::class, 'StatusId');
     }
 
+    public function users(): BelongsToMany 
+    {
+        return $this->belongsToMany(
+            User::class, // Modèle associé
+            'services_access', // Nom de la table pivot
+            'ServiceId', // Clé étrangère du modèle actuel dans la table pivot
+            'UserId' // Clé étrangère du modèle associé dans la table pivot
+        );
+    }
+
 }

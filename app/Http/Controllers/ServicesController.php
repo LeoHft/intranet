@@ -8,6 +8,7 @@ use App\Models\Services;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\JsonResponse;
+use App\Models\ServicesAccess;
 
 
 class ServicesController extends Controller
@@ -45,6 +46,12 @@ class ServicesController extends Controller
                     'ServiceId' => $service->id,
                 ]);
             }
+            foreach (json_decode($request->user_id) as $userId) {
+                ServicesAccess::create([
+                    'UserId' => $userId,
+                    'ServiceId' => $service->id,
+                ]);
+            }
 
         }
 
@@ -53,7 +60,7 @@ class ServicesController extends Controller
 
     public function getServices(): JsonResponse
     {
-        $services = Services::with('categories')->with('status')->get();
+        $services = Services::with('categories')->with('status')->with('users')->get();
         return response()->json($services);
     }
 
@@ -93,6 +100,13 @@ class ServicesController extends Controller
                 'ServiceId' => $service->id,
             ]);
         }
+        ServicesAccess::where('ServiceId', $id)->delete();
+        foreach (json_decode($request->user_id) as $userId) {
+            ServicesAccess::create([
+                'UserId' => $userId,
+                'ServiceId' => $service->id,
+            ]);
+        }
 
         return response()->json(['message' => 'Service updated successfully', 'service' => $service], 200);
     }
@@ -104,6 +118,7 @@ class ServicesController extends Controller
 
         // Delete associated categories
         CategoriesServices::where('ServiceId', $id)->delete();
+        ServicesAccess::where('ServiceId', $id)->delete();
 
         return response()->json(['message' => 'Service deleted successfully'], 200);
     }

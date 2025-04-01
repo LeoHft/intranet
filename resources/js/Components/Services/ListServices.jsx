@@ -51,7 +51,7 @@ export default function ListServices() {
 
     return (
         <>
-            <table className="table-auto border-collapse border border-gray-400 w-full">
+            <table className="table-auto border-collapse border border-gray-400 h-full w-full">
                 <thead className="bg-gray-200">
                     <tr className="border border-gray-400">
                         <th className="border border-gray-400 px-4">Nom</th>
@@ -61,6 +61,7 @@ export default function ListServices() {
                         <th className="border border-gray-400 px-4">Image</th>
                         <th className="border border-gray-400 px-4"> Catégorie(s) </th>
                         <th className="border border-gray-400 px-4">Statut</th>
+                        <th className="border border-gray-400 px-4">Utilisateur(s)</th>
                         {/* <th className="border border-gray-400 px-4">Date d'ajout</th>
                         <th className="border border-gray-400 px-4">Date de modification</th> */}
                         <th className="border border-gray-400 px-4">Actions</th>
@@ -69,7 +70,7 @@ export default function ListServices() {
                 <tbody>
                     {servicesList.length > 0 ? (
                         servicesList.map(service => (
-                            <tr key={service.id} className="border border-gray-400">
+                            <tr key={service.id} className="border border-gray-400 h-full">
                                 <td className="border border-gray-400 px-4">{service.Name}</td>
                                 <td className="border border-gray-400 px-4">{service.Description}</td>
                                 <td className="border border-gray-400 px-4">{service.WifiUrl}</td>
@@ -81,15 +82,26 @@ export default function ListServices() {
                                 </td>
                                 <td className="border border-gray-400 px-4">
                                     {service.categories.map(category => (
-                                        <span key={category.id} className="inline-block bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-sm mr-2">
+                                        <span key={category.id} className="inline-block bg-gray-200 text-gray-700 px-2 py-1 mb-1 mt-1 rounded-full text-sm mr-2 hover:bg-gray-300">
                                             {category.Name}
                                         </span>
                                     ))}
                                 </td>
-                                <td className="border border-gray-400 px-4">{service.status.Name}</td> 
+                                <td className="border border-gray-400 px-4">
+                                    <span className="inline-block bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-sm mr-2 hover:bg-gray-300">
+                                        {service.status.Name}
+                                    </span>
+                                </td> 
+                                <td className="border border-gray-400 px-4">
+                                    {service.users.map(user => (
+                                        <span key={user.id} className="inline-block bg-gray-200 text-gray-700 px-2 py-1 mb-1 mt-1 rounded-full text-sm mr-2 hover:bg-gray-300">
+                                            {user.name}
+                                        </span>
+                                    ))}
+                                </td>
                                 {/* <td className="border border-gray-400 px-4">{dayjs(service.created_at).format('DD/MM/YYYY HH:mm')}</td>
                                 <td className="border border-gray-400 px-4">{dayjs(service.updated_at).format('DD/MM/YYYY HH:mm')}</td> */}
-                                <td className="flex gap-2 content-center items-center justify-center py-1">
+                                <td className="flex gap-2 content-center items-center justify-center h-full">
                                     <SecondaryButton onClick={() => modifyService(service)}>Modifier</SecondaryButton>
                                     <DangerButton onClick={() => deleteServiceShow(service)}>Supprimer</DangerButton>
                                 </td>

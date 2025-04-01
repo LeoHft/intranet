@@ -15,10 +15,12 @@ import { Transition } from '@headlessui/react';
 import { useForm } from '@inertiajs/react';
 import { useRef } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
+import UsersSelect from "../Users/UsersSelect";
 
 export default function AddServiceForm() {
     const [showingAddServiceModal, setShowingAddServiceModal] = useState(false);
     const [selectedCategories, setSelectedCategories] = useState([]);
+    const [selectedUsers, setSelectedUsers] = useState([]);
     const [selectedStatus, setSelectedStatus] = useState(null);
     const name = useRef();
     const description = useRef();
@@ -43,6 +45,7 @@ export default function AddServiceForm() {
         image: '',
         categories: [],
         status: null,
+        users: [],
     });
 
     const AddService = () => {
@@ -58,6 +61,7 @@ export default function AddServiceForm() {
         formData.append('external_url', data.external_url);
         formData.append('image', data.image);
         formData.append('category_id', JSON.stringify(selectedCategories.map(category => category.value)));
+        formData.append('user_id', JSON.stringify(selectedUsers.map(user => user.value)));
         formData.append('status_id', selectedStatus?.value || '');
     
         axios.post('/api/storeService', formData, {
@@ -143,6 +147,10 @@ export default function AddServiceForm() {
                     <StatusSelect
                         selectedStatus={selectedStatus} 
                         setSelectedStatus={setSelectedStatus}
+                    />
+                    <UsersSelect
+                        selectedUsers={selectedUsers} 
+                        setSelectedUsers={setSelectedUsers}
                     />
                     <div>
                         <InputLabel htmlFor="image" value="Image" />
