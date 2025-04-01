@@ -52,7 +52,7 @@ export default function AddCategoryForm() {
                         Ajouter une catégorie
                     </h1>
                     <div>
-                        <InputLabel htmlFor="name" value="Nom de la catégorie" />
+                        <InputLabel htmlFor="name" value="Nom de la catégorie*" />
                         <TextInput
                             id="name"
                             ref={name}
@@ -74,7 +74,6 @@ export default function AddCategoryForm() {
                             type="text"
                             className="mt-1 block w-full"
                             placeholder="Description de la catégorie"
-                            required
                         />
                     </div>
                     <button type="submit" className="mt-4 bg-blue-500 text-white px-4 py-2 rounded">

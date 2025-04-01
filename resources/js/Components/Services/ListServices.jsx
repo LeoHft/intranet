@@ -81,19 +81,23 @@ export default function ListServices() {
                                     )}
                                 </td>
                                 <td className="border border-gray-400 px-4">
-                                    {service.categories.map(category => (
+                                    {service.categories.filter(category => category !== null).map(category => (
                                         <span key={category.id} className="inline-block bg-gray-200 text-gray-700 px-2 py-1 mb-1 mt-1 rounded-full text-sm mr-2 hover:bg-gray-300">
                                             {category.Name}
                                         </span>
                                     ))}
                                 </td>
                                 <td className="border border-gray-400 px-4">
-                                    <span className="inline-block bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-sm mr-2 hover:bg-gray-300">
-                                        {service.status.Name}
-                                    </span>
-                                </td> 
+                                    {service.status?.Name ? (
+                                        <span className="inline-block bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-sm mr-2 hover:bg-gray-300">
+                                            {service.status.Name}
+                                        </span>
+                                    ) : (
+                                        <span className="text-gray-500"> </span>
+                                    )}
+                                </td>
                                 <td className="border border-gray-400 px-4">
-                                    {service.users.map(user => (
+                                    {service.users.filter(user => user !== null).map(user => (
                                         <span key={user.id} className="inline-block bg-gray-200 text-gray-700 px-2 py-1 mb-1 mt-1 rounded-full text-sm mr-2 hover:bg-gray-300">
                                             {user.name}
                                         </span>

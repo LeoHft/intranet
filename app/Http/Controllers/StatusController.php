@@ -12,11 +12,12 @@ class StatusController extends Controller
         return response()->json($status);
     }
 
+
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string',
-            'description' => 'required|string',
+            'description' => 'nullable|string',
         ]);
 
         Status::create([
@@ -27,13 +28,14 @@ class StatusController extends Controller
         return response()->json(['message' => 'Status created successfully'], 201);
     }
 
+
     public function update(Request $request, $id)
     {
         $status = Status::findOrFail($id);
 
         $request->validate([
             'name' => 'required|string',
-            'description' => 'required|string',
+            'description' => 'nullable|string',
         ]);
 
         $status->update([
@@ -43,6 +45,7 @@ class StatusController extends Controller
 
         return response()->json(['message' => 'Status updated successfully'], 200);
     }
+
 
     public function destroy($id)
     {

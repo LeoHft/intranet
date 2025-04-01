@@ -52,7 +52,7 @@ export default function ListUsers() {
 
     return (
         <>
-        <table className="table-auto border-collapse border border-gray-400 w-full">
+        <table className="table-auto border-collapse border border-gray-400 w-full h-full">
             <thead className="bg-gray-200">
                 <tr className="border border-gray-400">
                     <th className="border border-gray-400 px-4">Nom</th>
@@ -66,7 +66,7 @@ export default function ListUsers() {
             <tbody>
                 {usersList.length > 0 ? (
                     usersList.map(user => (
-                        <tr key={user.id} className="border border-gray-400">
+                        <tr key={user.id} className="border border-gray-400 h-full">
                             <td className="border border-gray-400 px-4">{user.name}</td>
                             <td className="border border-gray-400 px-4">{user.email}</td>
                             <td className="border border-gray-400 px-4">
@@ -78,7 +78,7 @@ export default function ListUsers() {
                             </td>
                             <td className="border border-gray-400 px-4">{dayjs(user.created_at).format('DD/MM/YYYY HH:mm')}</td>
                             <td className="border border-gray-400 px-4">{dayjs(user.updated_at).format('DD/MM/YYYY HH:mm')}</td>
-                            <td className="flex gap-2 content-center items-center justify-center py-1">
+                            <td className="flex gap-2 content-center items-center justify-center py-1 h-full">
                                 <SecondaryButton onClick={() => ModifyUser(user)}>Modifier</SecondaryButton>
                                 <DangerButton onClick={() => DeleteUserShow(user)}>Supprimer</DangerButton>
                             </td>

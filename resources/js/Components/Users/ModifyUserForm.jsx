@@ -51,7 +51,7 @@ export default function ModifyUserForm({ user, onClose }) {
                     Modifier un utilisateur
                 </h1>
                 <div>
-                    <InputLabel htmlFor="name" value="Nom de l'utilisateur" />
+                    <InputLabel htmlFor="name" value="Nom de l'utilisateur*" />
                     <TextInput
                         id="name"
                         ref={name}
@@ -64,7 +64,7 @@ export default function ModifyUserForm({ user, onClose }) {
                     />
                 </div>
                 <div>
-                    <InputLabel htmlFor="email" value="Email" />
+                    <InputLabel htmlFor="email" value="Email*" />
                     <TextInput
                         id="email"
                         ref={email}

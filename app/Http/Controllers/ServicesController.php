@@ -17,9 +17,9 @@ class ServicesController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'internal_url' => 'required|string',
-            'external_url' => 'required|string',
+            'description' => 'nullable|string',
+            'internal_url' => 'nullable|string',
+            'external_url' => 'nullable|string',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -68,10 +68,10 @@ class ServicesController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'internal_url' => 'required|string',
-            'external_url' => 'required|string',
-            'image' => 'optional|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'description' => 'nullable|string',
+            'internal_url' => 'nullable|string',
+            'external_url' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $service = Services::findOrFail($id);

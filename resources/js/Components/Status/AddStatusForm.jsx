@@ -52,7 +52,7 @@ export default function AddStatusForm() {
                         Ajouter un status
                     </h1>
                     <div>
-                        <InputLabel htmlFor="name" value="Nom du status" />
+                        <InputLabel htmlFor="name" value="Nom du status*" />
                         <TextInput
                             id="name"
                             ref={name}
@@ -74,7 +74,6 @@ export default function AddStatusForm() {
                             type="text"
                             className="mt-1 block w-full"
                             placeholder="Description du status"
-                            required
                         />
                     </div>
                     <button type="submit" className="mt-4 bg-blue-500 text-white px-4 py-2 rounded">

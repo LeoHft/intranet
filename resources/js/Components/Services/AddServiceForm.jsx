@@ -89,7 +89,7 @@ export default function AddServiceForm() {
                         Ajouter un service
                     </h1>
                     <div>
-                        <InputLabel htmlFor="name" value="Nom du service" />
+                        <InputLabel htmlFor="name" value="Nom du service*" />
                         <TextInput
                             id="name"
                             ref={name}
@@ -111,7 +111,6 @@ export default function AddServiceForm() {
                             type="text"
                             className="mt-1 block w-full"
                             placeholder="Description du service"
-                            required
                         />
                     </div>
                     <div>
@@ -124,7 +123,6 @@ export default function AddServiceForm() {
                             type="text"
                             className="mt-1 block w-full"
                             placeholder="Url interne"
-                            required
                         />
                     </div>
                     <div>
@@ -137,7 +135,6 @@ export default function AddServiceForm() {
                             type="text"
                             className="mt-1 block w-full"
                             placeholder="Url externe"
-                            required
                         />
                     </div>
                     <CategorySelect
@@ -153,7 +150,7 @@ export default function AddServiceForm() {
                         setSelectedUsers={setSelectedUsers}
                     />
                     <div>
-                        <InputLabel htmlFor="image" value="Image" />
+                        <InputLabel htmlFor="image" value="Image*" />
                         <input
                             id="image"
                             type="file"

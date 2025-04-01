@@ -49,7 +49,7 @@ export default function AddUserForm() {
                             Ajouter un utilisateur
                         </h1>
                         <div>
-                            <InputLabel htmlFor="name" value="Nom" />
+                            <InputLabel htmlFor="name" value="Nom*" />
 
                             <TextInput
                                 id="name"
@@ -67,7 +67,7 @@ export default function AddUserForm() {
                         </div>
 
                         <div className="mt-4">
-                            <InputLabel htmlFor="email" value="Email" />
+                            <InputLabel htmlFor="email" value="Email*" />
 
                             <TextInput
                                 id="email"
@@ -85,7 +85,7 @@ export default function AddUserForm() {
                         </div>
 
                         <div className="mt-4">
-                            <InputLabel htmlFor="password" value="Mot de passe" />
+                            <InputLabel htmlFor="password" value="Mot de passe*" />
 
                             <TextInput
                                 id="password"
@@ -105,7 +105,7 @@ export default function AddUserForm() {
                         <div className="mt-4">
                             <InputLabel
                                 htmlFor="password_confirmation"
-                                value="Confirmer le mot de passe"
+                                value="Confirmer le mot de passe*"
                             />
 
                             <TextInput

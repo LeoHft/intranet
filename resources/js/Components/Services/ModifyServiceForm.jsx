@@ -84,7 +84,7 @@ export default function ModifyServiceForm({ service, onClose }) {
                     Modifier un service
                 </h1>
                 <div>
-                    <InputLabel htmlFor="name" value="Nom du service" />
+                    <InputLabel htmlFor="name" value="Nom du service*" />
                     <TextInput
                         id="name"
                         value={data.name}
@@ -104,11 +104,10 @@ export default function ModifyServiceForm({ service, onClose }) {
                         type="text"
                         className="mt-1 block w-full"
                         placeholder="Description du service"
-                        required
                     />
                 </div>
                 <div>
-                    <InputLabel htmlFor="wifiUrl" value="URL Wifi" />
+                    <InputLabel htmlFor="wifiUrl" value="Url interne" />
                     <TextInput
                         id="wifiUrl"
                         value={data.wifiUrl}
@@ -119,7 +118,7 @@ export default function ModifyServiceForm({ service, onClose }) {
                     />
                 </div>
                 <div>
-                    <InputLabel htmlFor="cloudflareUrl" value="URL Cloudflare" />
+                    <InputLabel htmlFor="cloudflareUrl" value="Url externe" />
                     <TextInput
                         id="cloudflareUrl"
                         value={data.cloudflareUrl}
