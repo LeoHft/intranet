@@ -2,18 +2,11 @@ import { useEffect, useState } from "react";
 import { usePage } from '@inertiajs/react';
 import { Head } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-
+import CardServices from "@/Components/ListServices/CardServices";
 
 
 export default function Dashboard({}) {
     const user = usePage().props.auth.user;
-    const [data, setData] = useState([]);
-
-    useEffect(() => {
-        fetch("/api/posts") // Appelle l'API Laravel
-            .then((res) => res.json())
-            .then((data) => setData(data));
-    }, []);
 
     return (
         <AuthenticatedLayout>
@@ -21,11 +14,7 @@ export default function Dashboard({}) {
             <Head title="Dashboard" />
             <p className="font-serif text-3xl ">Bonjour, </p>
             <p className="font-serif text-2xl" > {user.name} </p>
-            <ul>
-                {data.map((post) => (
-                    <li key={post.id}>{post.title}</li>
-                ))}
-            </ul>
+            <CardServices />
         </div>
         </AuthenticatedLayout>
     );
