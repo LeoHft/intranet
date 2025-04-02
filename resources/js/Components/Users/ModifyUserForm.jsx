@@ -5,16 +5,19 @@ import TextInput from "../TextInput";
 import { useForm } from '@inertiajs/react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
+import InputError from '@/Components/InputError';
 
 
 export default function ModifyUserForm({ user, onClose }) {
     const [showingModifyUserModal, setShowingModifyUserModal] = useState(true);
     const name = useRef();
     const email = useRef();
+    const is_admin = useRef();
 
-    const { data, setData, reset } = useForm({
+    const { data, setData, reset, errors } = useForm({
         name: '',
         email: '',
+        is_admin: false,
     });
 
     useEffect(() => {
@@ -22,6 +25,7 @@ export default function ModifyUserForm({ user, onClose }) {
             setData({
                 name: user.name || '',
                 email: user.email || '',
+                is_admin: user.is_admin || false,
             });
         }
     }, [user]);
@@ -32,6 +36,7 @@ export default function ModifyUserForm({ user, onClose }) {
         axios.put(`/api/updateUser/${user.id}`, {
             name: data.name,
             email: data.email,
+            is_admin: data.is_admin,
         })
         .then(response => {
             toast.success('Utilisateur modifié avec succès');
@@ -75,6 +80,21 @@ export default function ModifyUserForm({ user, onClose }) {
                         placeholder="Email de l'utilisateur"
                         required
                     />
+                </div>
+                <div className="mt-4 accent-black hover:green-500">
+                    <input
+                        id="is_admin"
+                        type="checkbox"
+                        name="is_admin"
+                        ref={is_admin}
+                        checked={data.is_admin}
+                        className="mt-1 w-4 h-4"
+                        onChange={(e) => setData('is_admin', e.target.checked)}
+                    />
+                    <label htmlFor="is_admin" className="text-ml text-gray-700 cursor-pointer hover:text-gray-500 transition ml-2 ">
+                        Administrateur
+                    </label>
+                    <InputError message={errors.is_admin} className="mt-3" />
                 </div>
                 <button type="submit" className="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
                     Valider

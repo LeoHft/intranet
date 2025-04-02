@@ -130,23 +130,20 @@ export default function AddUserForm() {
                             />
                         </div>
 
-                        <div className="mt-4">
-                            <InputLabel
-                                htmlFor="is_admin"
-                                value="Administrateur"
-                            />
-
+                        <div className="mt-4 accent-black hover:green-500">
                             <input
                                 id="is_admin"
                                 type="checkbox"
                                 name="is_admin"
                                 checked={data.is_admin}
-                                className="mt-1"
+                                className="mt-1 w-4 h-4"
                                 onChange={(e) => setData('is_admin', e.target.checked)}
                             />
-                            <InputError message={errors.is_admin} className="mt-2" />
+                            <label htmlFor="is_admin" className="text-ml text-gray-700 cursor-pointer hover:text-gray-500 transition ml-2 ">
+                                Administrateur
+                            </label>
+                            <InputError message={errors.is_admin} className="mt-3" />
                         </div>
-
                         <button type="submit" className="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
                             Valider
                         </button>
