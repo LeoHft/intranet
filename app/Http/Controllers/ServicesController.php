@@ -9,10 +9,43 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\JsonResponse;
 use App\Models\ServicesAccess;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
+use App\Models\User;
+
 
 
 class ServicesController extends Controller
-{
+{   
+    public function getServices(): JsonResponse
+    {
+
+        $services = Services::with('categories')->with('status')->with('users')->get();
+        return response()->json($services);
+    }
+
+    public function getUserServices(): JsonResponse
+    {
+        // Log::info('Authenticated User:', ['user' => Auth::user()]); //Pour vérification d'authentification d'user
+        // Log::info('Guards:', ['web' => Auth::guard('web')->check(), 'api' => Auth::guard('api')->check()]); //Pour vérification d'authentification d'user
+        // Log::info('User :', ['web' => Auth::guard('web')->user(), 'api' => Auth::guard('api')->user()]); //Pour vérification d'authentification d'user
+
+        if (!Auth::check()) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+    
+        // Log::info('User ID: ' . Auth::id()); // Pour vérification d'authentification d'user
+    
+        $services = Services::with('categories', 'status', 'users')
+            ->whereHas('users', function ($query) {
+                $query->where('user_id', Auth::id());
+            })
+            ->get();
+    
+        return response()->json($services);
+    }
+    
+
     public function store(Request $request)
     {
         $request->validate([
@@ -58,21 +91,6 @@ class ServicesController extends Controller
         return response()->json(['message' => 'Service created successfully', 'service' => $service], 201);
     }
 
-    public function getServices(): JsonResponse
-    {
-        $services = Services::with('categories')->with('status')->with('users')->get();
-        return response()->json($services);
-    }
-
-    public function getUserServices(): JsonResponse
-    {
-        $services = Services::with('categories', 'status', 'users')
-            ->whereHas('users', function ($query) {
-            $query->where('user_id', auth()->id());
-            })
-            ->get();
-        return response()->json($services);
-    }
 
     public function update(Request $request, $id): JsonResponse
     {
@@ -81,7 +99,7 @@ class ServicesController extends Controller
             'description' => 'nullable|string',
             'internal_url' => 'nullable|string',
             'external_url' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
         $service = Services::findOrFail($id);

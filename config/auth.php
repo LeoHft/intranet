@@ -36,8 +36,12 @@ return [
     */
 
     'guards' => [
+        // 'web' => [
+        //     'driver' => 'session',
+        //     'provider' => 'users',
+        // ],
         'api' => [
-            'driver' => 'sanctum',
+            'driver' => 'sanctum',  // Utilise Sanctum pour les requêtes API
             'provider' => 'users',
         ],
     ],

@@ -3,6 +3,10 @@
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ServicesController;
+use Laravel\Sanctum\HasApiTokens;
+use App\Http\Controllers\AuthController;
 
 
 Route::get('/user', function (Request $request) {
@@ -15,12 +19,13 @@ Route::get('/posts', function () {
 });
 
 
-// Route::middleware('auth:sanctum')->group(function () {
+Route::middleware('auth:sanctum')->group(function () {
 
 
     //Services
     Route::get('/getServices', 'App\Http\Controllers\ServicesController@getServices'); // Récupère les services
-    Route::get('/getUserServices', 'App\Http\Controllers\ServicesController@getUserServices'); // Récupère les services d'un utilisateur
+    Route::get('/getUserServices', 'App\Http\Controllers\ServicesController@getUserServices'); // Récupère un service
+
     Route::post('/storeService', 'App\Http\Controllers\ServicesController@store'); // Enregistre un service 
     Route::put('/updateService/{id}', 'App\Http\Controllers\ServicesController@update'); // Modifie un service
     Route::delete('/deleteService/{id}', 'App\Http\Controllers\ServicesController@destroy'); // Supprime un service
@@ -43,6 +48,6 @@ Route::get('/posts', function () {
     Route::put('/updateUser/{id}', 'App\Http\Controllers\UserController@update'); // Modifie un utilisateur
     Route::delete('/deleteUser/{id}', 'App\Http\Controllers\UserController@destroy'); // Supprime un utilisateur
 
-// });
+});
 
-// require __DIR__.'/auth.php';
+require __DIR__.'/auth.php';

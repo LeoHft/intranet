@@ -14,7 +14,6 @@ class UserController extends Controller
     public function getUsers()
     {
         $users = User::select('id', 'name', 'email', 'created_at', 'updated_at','is_admin')->with('services')->get();
-        Log::info('Users retrieved successfully', ['users' => $users]);
 
         return response()->json($users);
     }
