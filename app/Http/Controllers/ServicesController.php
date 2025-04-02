@@ -53,7 +53,7 @@ class ServicesController extends Controller
             'description' => 'nullable|string',
             'internal_url' => 'nullable|string',
             'external_url' => 'nullable|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
         if ($request->hasFile('image')) {
