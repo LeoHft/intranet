@@ -114,6 +114,11 @@ export default function CardServices() {
                                 )} 
                             </div>  
                         </div>
+                        <div className="mt-4 flex flex-col space-y-2"> 
+                            <p className="text-gray-500 text-ml text-center">
+                                {selectedService.description}
+                            </p>
+                        </div>
                     </div>
                 </div>
             )}
