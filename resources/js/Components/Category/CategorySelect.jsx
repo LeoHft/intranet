@@ -10,7 +10,7 @@ export default function CategorySelect({ selectedCategories, setSelectedCategori
             .then((response) => {
                 setCategories(response.data.map((category) => ({
                     value: category.id,
-                    label: category.Name,
+                    label: category.name,
                 })));
             })
             .catch((error) => {

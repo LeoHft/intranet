@@ -10,7 +10,7 @@ class CategoriesServices extends Model
     protected $primaryKey = 'id'; // Clé primaire
 
     protected $fillable = [
-        'CategoryId',
-        'ServiceId',
+        'category_id',
+        'service_id',
     ];
 }

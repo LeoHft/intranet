@@ -11,7 +11,7 @@ export default function StatusSelect({ selectedStatus, setSelectedStatus }) {
             .then((response) => {
                 setStatusOptions(response.data.map((status) => ({
                     value: status.id,
-                    label: status.Name, // Garde la majuscule
+                    label: status.name, // Garde la majuscule
                 })));
                 setLoading(false);
             })

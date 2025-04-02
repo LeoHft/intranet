@@ -15,8 +15,8 @@ class CategorySeeder extends Seeder
     {
         DB::table('categories')->insert([
             [
-                'Name' => 'Domotique',
-                'Description' => "Home assistant",
+                'name' => 'Domotique',
+                'description' => "Home assistant",
                 'created_at' => now(),
                 'updated_at' => now(),
             ]

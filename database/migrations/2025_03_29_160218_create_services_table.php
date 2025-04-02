@@ -13,40 +13,40 @@ return new class extends Migration
     {
         Schema::create('status', function (Blueprint $table) {
             $table->id();
-            $table->string('Name');
-            $table->string('Description')->nullable();
+            $table->string('name');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
 
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('Name');
-            $table->string('Description')->nullable();
+            $table->string('name');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
 
         Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->string('Name');
-            $table->string('Description')->nullable();
-            $table->string('WifiUrl')->nullable();
-            $table->string('CloudflareUrl')->nullable();
-            $table->string('ImageUrl');
-            $table->foreignId('StatusId')->nullable()->constrained('status')->nullOnDelete();
+            $table->string('name');
+            $table->string('description')->nullable();
+            $table->string('internal_url')->nullable();
+            $table->string('external_url')->nullable();
+            $table->string('image_url');
+            $table->foreignId('status_id')->nullable()->constrained('status')->nullOnDelete();
             $table->timestamps();
         });
 
         Schema::create('categories_services', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('CategoryId')->constrained('categories')->onDelete('cascade');
-            $table->foreignId('ServiceId')->constrained('services')->onDelete('cascade');
+            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
+            $table->foreignId('service_id')->constrained('services')->onDelete('cascade');
             $table->timestamps();
         });
 
         Schema::create('services_access', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('ServiceId')->constrained('services')->onDelete('cascade');
-            $table->foreignId('UserId')->constrained('users')->onDelete('cascade');
+            $table->foreignId('service_id')->constrained('services')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

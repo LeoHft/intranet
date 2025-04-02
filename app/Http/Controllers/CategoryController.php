@@ -25,8 +25,8 @@ class CategoryController extends Controller
         ]);
 
         Categories::create([
-            'Name' => $request->name,
-            'Description' => $request->description,
+            'name' => $request->name,
+            'description' => $request->description,
         ]);
 
         return response()->json(['message' => 'Category created successfully'], 201);
@@ -42,8 +42,8 @@ class CategoryController extends Controller
         ]);
 
         $category->update([
-            'Name' => $request->name,
-            'Description' => $request->description,
+            'name' => $request->name,
+            'description' => $request->description,
         ]);
 
         return response()->json(['message' => 'Category updated successfully'], 200);

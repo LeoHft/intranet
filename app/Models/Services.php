@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Services extends Model
 {
     protected $fillable = [
-        'Name',
-        'Description',
-        'WifiUrl',
-        'CloudflareUrl',
-        'ImageUrl',
-        'StatusId',
+        'name',
+        'description',
+        'internal_url',
+        'external_url',
+        'image_url',
+        'status_id',
     ];
 
 
@@ -22,14 +22,14 @@ class Services extends Model
         return $this->belongsToMany(
             Categories::class,
             'categories_services',
-            'ServiceId',
-            'CategoryId'
+            'service_id',
+            'category_id'
         );
     }
 
     public function status()
     {
-        return $this->belongsTo(Status::class, 'StatusId');
+        return $this->belongsTo(Status::class, 'status_id');
     }
 
     public function users(): BelongsToMany 
@@ -37,8 +37,8 @@ class Services extends Model
         return $this->belongsToMany(
             User::class, // Modèle associé
             'services_access', // Nom de la table pivot
-            'ServiceId', // Clé étrangère du modèle actuel dans la table pivot
-            'UserId' // Clé étrangère du modèle associé dans la table pivot
+            'service_id', // Clé étrangère du modèle actuel dans la table pivot
+            'user_id' // Clé étrangère du modèle associé dans la table pivot
         );
     }
 

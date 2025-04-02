@@ -71,26 +71,26 @@ export default function ListServices() {
                     {servicesList.length > 0 ? (
                         servicesList.map(service => (
                             <tr key={service.id} className="border border-gray-400 h-full">
-                                <td className="border border-gray-400 px-4">{service.Name}</td>
-                                <td className="border border-gray-400 px-4">{service.Description}</td>
-                                <td className="border border-gray-400 px-4">{service.WifiUrl}</td>
-                                <td className="border border-gray-400 px-4">{service.CloudflareUrl}</td>
+                                <td className="border border-gray-400 px-4">{service.name}</td>
+                                <td className="border border-gray-400 px-4">{service.description}</td>
+                                <td className="border border-gray-400 px-4">{service.internal_url}</td>
+                                <td className="border border-gray-400 px-4">{service.external_url}</td>
                                 <td className="border border-gray-400 px-4">
-                                    {service.ImageUrl && (
-                                        <img src={service.ImageUrl} alt="Service" className="h-10 w-10 object-cover" />
+                                    {service.image_url && (
+                                        <img src={service.image_url} alt="Service" className="h-10 w-10 object-cover" />
                                     )}
                                 </td>
                                 <td className="border border-gray-400 px-4">
                                     {service.categories.filter(category => category !== null).map(category => (
                                         <span key={category.id} className="inline-block bg-gray-200 text-gray-700 px-2 py-1 mb-1 mt-1 rounded-full text-sm mr-2 hover:bg-gray-300">
-                                            {category.Name}
+                                            {category.name}
                                         </span>
                                     ))}
                                 </td>
                                 <td className="border border-gray-400 px-4">
-                                    {service.status?.Name ? (
+                                    {service.status?.name ? (
                                         <span className="inline-block bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-sm mr-2 hover:bg-gray-300">
-                                            {service.status.Name}
+                                            {service.status.name}
                                         </span>
                                     ) : (
                                         <span className="text-gray-500"> </span>
@@ -133,7 +133,7 @@ export default function ListServices() {
                     <h1 className="text-lg font-medium text-gray-900">
                         Supprimer un service
                     </h1>
-                    <p>Êtes-vous sûr de vouloir supprimer le service "{selectedService?.Name}" ?</p>
+                    <p>Êtes-vous sûr de vouloir supprimer le service "{selectedService?.name}" ?</p>
                     <div className="flex gap-2 justify-end">
                         <SecondaryButton onClick={() => setShowModalDeleteService(false)}>Annuler</SecondaryButton>
                         <DangerButton type="submit">Supprimer</DangerButton>

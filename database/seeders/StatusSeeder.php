@@ -14,8 +14,8 @@ class StatusSeeder extends Seeder
     public function run(): void
     {
         DB::table('status')->insert([
-            'Name' => 'UP',
-            'Description' => 'Le service est accessible',
+            'name' => 'UP',
+            'description' => 'Le service est accessible',
             'created_at' => now(),
             'updated_at' => now(),
         ]);

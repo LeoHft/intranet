@@ -20,8 +20,8 @@ export default function ModifyCategoryForm({ category, onClose }) {
     useEffect(() => {
         if (category) {
             setData({
-                name: category.Name || '',
-                description: category.Description || '',
+                name: category.name || '',
+                description: category.description || '',
             });
         }
     }, [category]);

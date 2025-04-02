@@ -65,8 +65,8 @@ export default function ListCategory() {
                 {categoriesList.length > 0 ? (
                     categoriesList.map(category => (
                         <tr key={category.id} className="border border-gray-400">
-                            <td className="border border-gray-400 px-4">{category.Name}</td>
-                            <td className="border border-gray-400 px-4">{category.Description}</td>
+                            <td className="border border-gray-400 px-4">{category.name}</td>
+                            <td className="border border-gray-400 px-4">{category.description}</td>
                             <td className="border border-gray-400 px-4">{dayjs(category.created_at).format('DD/MM/YYYY HH:mm')}</td>
                             <td className="border border-gray-400 px-4">{dayjs(category.updated_at).format('DD/MM/YYYY HH:mm')}</td>
                             <td className="flex gap-2 content-center items-center justify-center py-1">
@@ -97,7 +97,7 @@ export default function ListCategory() {
                 <h1 className="text-lg font-medium text-gray-900">
                     Supprimer une catégorie
                 </h1>
-                <p>Êtes-vous sûr de vouloir supprimer la catégorie "{selectedCategory?.Name}" ?</p>
+                <p>Êtes-vous sûr de vouloir supprimer la catégorie "{selectedCategory?.name}" ?</p>
                 <div className="flex gap-2 justify-end">
                     <SecondaryButton onClick={() => setShowModalDeleteCategory(false)}>Annuler</SecondaryButton>
                     <DangerButton type="submit">Supprimer</DangerButton>

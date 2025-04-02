@@ -52,8 +52,8 @@ class User extends Authenticatable
         return $this->belongsToMany(
             Services::class, // Modèle associé
             'services_access', // Nom de la table pivot
-            'UserId', // Clé étrangère du modèle actuel dans la table pivot
-            'ServiceId' // Clé étrangère du modèle associé dans la table pivot
+            'user_id', // Clé étrangère du modèle actuel dans la table pivot
+            'service_id' // Clé étrangère du modèle associé dans la table pivot
         );
     }
 }

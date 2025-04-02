@@ -72,7 +72,7 @@ export default function ListUsers() {
                             <td className="border border-gray-400 px-4">
                                 {user.services.map(service => (
                                     <span key={service.id} className="inline-block bg-gray-200 text-gray-700 px-2 py-1 mb-1 mt-1 rounded-full text-sm mr-2 hover:bg-gray-300">
-                                        {service.Name}
+                                        {service.name}
                                     </span>
                                 ))}
                             </td>

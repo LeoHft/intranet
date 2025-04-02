@@ -10,7 +10,7 @@ class Status extends Model
     protected $primaryKey = 'id'; // Clé primaire
 
     protected $fillable = [
-        'Name',
-        'Description',
+        'name',
+        'description',
     ];
 }

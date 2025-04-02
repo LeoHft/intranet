@@ -11,8 +11,8 @@ class Categories extends Model
     protected $primaryKey = 'id'; // Clé primaire
 
     protected $fillable = [
-        'Name',
-        'Description',
+        'name',
+        'description',
     ];
 
     public function services(): BelongsToMany
@@ -20,8 +20,8 @@ class Categories extends Model
         return $this->belongsToMany(
             Services::class,
             'categories_services',
-            'CategoryId',
-            'ServiceId'
+            'category_id',
+            'service_id'
         );
     }
 

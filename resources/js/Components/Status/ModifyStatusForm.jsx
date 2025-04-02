@@ -20,8 +20,8 @@ export default function ModifyStatusForm({ status, onClose }) {
     useEffect(() => {
         if (status) {
             setData({
-                name: status.Name || '',
-                description: status.Description || '',
+                name: status.name || '',
+                description: status.description || '',
             });
         }
     }, [status]);

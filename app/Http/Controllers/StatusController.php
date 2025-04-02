@@ -21,8 +21,8 @@ class StatusController extends Controller
         ]);
 
         Status::create([
-            'Name' => $request->name,
-            'Description' => $request->description,
+            'name' => $request->name,
+            'description' => $request->description,
         ]);
 
         return response()->json(['message' => 'Status created successfully'], 201);
@@ -39,8 +39,8 @@ class StatusController extends Controller
         ]);
 
         $status->update([
-            'Name' => $request->name,
-            'Description' => $request->description,
+            'name' => $request->name,
+            'description' => $request->description,
         ]);
 
         return response()->json(['message' => 'Status updated successfully'], 200);

@@ -66,8 +66,8 @@ export default function ListStatus() {
                 {StatusList.length > 0 ? (
                     StatusList.map(status => (
                         <tr key={status.id} className="border border-gray-400">
-                            <td className="border border-gray-400 px-4">{status.Name}</td>
-                            <td className="border border-gray-400 px-4">{status.Description}</td>
+                            <td className="border border-gray-400 px-4">{status.name}</td>
+                            <td className="border border-gray-400 px-4">{status.description}</td>
                             <td className="border border-gray-400 px-4">{dayjs(status.created_at).format('DD/MM/YYYY HH:mm')}</td>
                             <td className="border border-gray-400 px-4">{dayjs(status.updated_at).format('DD/MM/YYYY HH:mm')}</td>
                             <td className="flex gap-2 content-center items-center justify-center py-1">
@@ -98,7 +98,7 @@ export default function ListStatus() {
                 <h1 className="text-lg font-medium text-gray-900">
                     Supprimer un status
                 </h1>
-                <p>Êtes-vous sûr de vouloir supprimer le status "{selectedStatus?.Name}" ?</p>
+                <p>Êtes-vous sûr de vouloir supprimer le status "{selectedStatus?.name}" ?</p>
                 <div className="flex gap-2 justify-end">
                     <SecondaryButton onClick={() => setShowModalDeleteStatus(false)}>Annuler</SecondaryButton>
                     <DangerButton type="submit">Supprimer</DangerButton>

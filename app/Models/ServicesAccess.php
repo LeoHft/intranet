@@ -9,17 +9,17 @@ class ServicesAccess extends Model
     protected $table = 'services_access';
 
     protected $fillable = [
-        'ServiceId',
-        'UserId',
+        'service_id',
+        'user_id',
     ];
 
     public function service()
     {
-        return $this->belongsTo(Services::class, 'ServiceId');
+        return $this->belongsTo(Services::class, 'service_id');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'UserId');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

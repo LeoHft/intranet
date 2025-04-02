@@ -19,8 +19,8 @@ export default function ModifyServiceForm({ service, onClose }) {
     const { data, setData, reset } = useForm({
         name: '',
         description: '',
-        wifiUrl: '',
-        cloudflareUrl: '',
+        internal_url: '',
+        external_url: '',
         image: '',
         categories: [],
         users: [],
@@ -30,19 +30,19 @@ export default function ModifyServiceForm({ service, onClose }) {
     useEffect(() => {
         if (service) {
             setData({
-                name: service.Name || '',
-                description: service.Description || '',
-                wifiUrl: service.WifiUrl || '',
-                cloudflareUrl: service.CloudflareUrl || '',
-                image: service.ImageUrl || '',
-                categories: service.categories?.map(cat => ({ value: cat.id, label: cat.Name })) || [],
+                name: service.name || '',
+                description: service.description || '',
+                internal_url: service.internal_url || '',
+                external_url: service.external_url || '',
+                image: service.image_url || '',
+                categories: service.categories?.map(cat => ({ value: cat.id, label: cat.name })) || [],
                 users: service.users?.map(user => ({ value: user.id, label: user.name })) || [],
-                status: service.status ? { value: service.status.id, label: service.status.Name } : null,
+                status: service.status ? { value: service.status.id, label: service.status.name } : null,
             });
     
-            setSelectedCategories(service.categories?.map(cat => ({ value: cat.id, label: cat.Name })) || []);
+            setSelectedCategories(service.categories?.map(cat => ({ value: cat.id, label: cat.name })) || []);
             setSelectedUsers(service.users?.map(user => ({ value: user.id, label: user.name })) || []);
-            setSelectedStatus(service.status ? { value: service.status.id, label: service.status.Name } : null);
+            setSelectedStatus(service.status ? { value: service.status.id, label: service.status.name } : null);
         }
     }, [service]);
 
@@ -52,8 +52,8 @@ export default function ModifyServiceForm({ service, onClose }) {
         formData.append('_method', 'PUT'); 
         formData.append('name', data.name);
         formData.append('description', data.description);
-        formData.append('internal_url', data.wifiUrl);
-        formData.append('external_url', data.cloudflareUrl);
+        formData.append('internal_url', data.internal_url);
+        formData.append('external_url', data.external_url);
         if (imageFile) {
             formData.append('image', imageFile); // Ajout du fichier
         }
@@ -107,25 +107,25 @@ export default function ModifyServiceForm({ service, onClose }) {
                     />
                 </div>
                 <div>
-                    <InputLabel htmlFor="wifiUrl" value="Url interne" />
+                    <InputLabel htmlFor="internal_url" value="Url interne" />
                     <TextInput
-                        id="wifiUrl"
-                        value={data.wifiUrl}
-                        onChange={(e) => setData('wifiUrl', e.target.value)}
+                        id="internal_url"
+                        value={data.internal_url}
+                        onChange={(e) => setData('internal_url', e.target.value)}
                         type="text"
                         className="mt-1 block w-full"
-                        placeholder="URL Wifi"
+                        placeholder="Url interne"
                     />
                 </div>
                 <div>
-                    <InputLabel htmlFor="cloudflareUrl" value="Url externe" />
+                    <InputLabel htmlFor="external_url" value="Url externe" />
                     <TextInput
-                        id="cloudflareUrl"
-                        value={data.cloudflareUrl}
-                        onChange={(e) => setData('cloudflareUrl', e.target.value)}
+                        id="external_url"
+                        value={data.external_url}
+                        onChange={(e) => setData('external_url', e.target.value)}
                         type="text"
                         className="mt-1 block w-full"
-                        placeholder="URL Cloudflare"
+                        placeholder="URL externe"
                     />
                 </div>
                 <div>
