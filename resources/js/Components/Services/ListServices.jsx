@@ -113,7 +113,7 @@ export default function ListServices() {
                         ))
                     ) : (
                         <tr>
-                            <td colSpan="8" className="text-center text-gray-500 py-4">
+                            <td colSpan="9" className="text-center text-gray-500 py-4">
                                 Aucun service trouvé.
                             </td>
                         </tr>

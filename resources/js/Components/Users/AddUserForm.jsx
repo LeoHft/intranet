@@ -14,6 +14,7 @@ export default function AddUserForm() {
         email: '',
         password: '',
         password_confirmation: '',
+        'is_admin': false,
     });
 
     const AddUser = () => {
@@ -27,6 +28,7 @@ export default function AddUserForm() {
             email: data.email,
             password: data.password,
             password_confirmation: data.password_confirmation,
+            'is_admin': data.is_admin,
         })
         .then(response => {
             reset();
@@ -126,6 +128,23 @@ export default function AddUserForm() {
                                 message={errors.password_confirmation}
                                 className="mt-2"
                             />
+                        </div>
+
+                        <div className="mt-4">
+                            <InputLabel
+                                htmlFor="is_admin"
+                                value="Administrateur"
+                            />
+
+                            <input
+                                id="is_admin"
+                                type="checkbox"
+                                name="is_admin"
+                                checked={data.is_admin}
+                                className="mt-1"
+                                onChange={(e) => setData('is_admin', e.target.checked)}
+                            />
+                            <InputError message={errors.is_admin} className="mt-2" />
                         </div>
 
                         <button type="submit" className="mt-4 bg-blue-500 text-white px-4 py-2 rounded">

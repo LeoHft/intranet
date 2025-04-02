@@ -13,7 +13,7 @@ class UserController extends Controller
 {
     public function getUsers()
     {
-        $users = User::select('id', 'name', 'email', 'created_at', 'updated_at')->with('services')->get();
+        $users = User::select('id', 'name', 'email', 'created_at', 'updated_at','is_admin')->with('services')->get();
         Log::info('Users retrieved successfully', ['users' => $users]);
 
         return response()->json($users);
@@ -26,12 +26,14 @@ class UserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'is_admin' => ['boolean'],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'is_admin' => $request->is_admin,
         ]);
 
         return response()->json($user, 201);
