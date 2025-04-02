@@ -72,7 +72,7 @@ export default function ListServices() {
                         servicesList.map(service => (
                             <tr key={service.id} className="border border-gray-400 h-full">
                                 <td className="border border-gray-400 px-4">{service.name}</td>
-                                <td className="border border-gray-400 px-4">{service.description}</td>
+                                <td className="border border-gray-400 px-4 truncate max-w-[160px]">{service.description}</td>
                                 <td className="border border-gray-400 px-4">{service.internal_url}</td>
                                 <td className="border border-gray-400 px-4">{service.external_url}</td>
                                 <td className="border border-gray-400 px-4">

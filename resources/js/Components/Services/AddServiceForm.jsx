@@ -11,7 +11,7 @@ import TextInput from "@/Components//TextInput";
 import { Cat } from "lucide-react";
 import CategorySelect from "@/Components//Category/CategorySelect";
 import StatusSelect from "@/Components//Status/StatusSelect";
-import { Transition } from '@headlessui/react';
+import { Textarea, Transition } from '@headlessui/react';
 import { useForm } from '@inertiajs/react';
 import { useRef } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
@@ -102,15 +102,14 @@ export default function AddServiceForm() {
                             required
                         />
                     </div>
-                    <div>
+                    <div>   
                         <InputLabel htmlFor="description" value="Description" />
-                        <TextInput
+                        <textarea
                             id="description"
                             ref={description}
                             value={data.description}
                             onChange={(e) => setData('description', e.target.value)}
-                            type="text"
-                            className="mt-1 block w-full"
+                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                             placeholder="Description du service"
                         />
                     </div>
@@ -155,7 +154,7 @@ export default function AddServiceForm() {
                         <input
                             id="image"
                             type="file"
-                            className="mt-1 block w-full"
+                            className="mt-1 block w-full hover:cursor-pointer"
                             onChange={(e) => setData('image', e.target.files[0])}
                             required
                         />
