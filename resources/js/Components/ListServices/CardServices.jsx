@@ -38,13 +38,13 @@ export default function CardServices() {
                             alt={service.name} 
                         />
                         {service.status !== null && (
-                            <span className="absolute top-2 right-2 bg-gray-700 text-white px-3 py-1 rounded-full text-sm shadow-md">
+                            <span className="absolute top-2 right-2 bg-gray-700 text-white px-3 py-1 rounded-full text-xs">
                                 {service.status.name}
                             </span>
                         )}
                         <div className="absolute top-2 left-2 space-y-1">
                             {Array.isArray(service.categories) && service.categories.map(category => (
-                                <span key={category.id} className="inline-block bg-gray-800 text-white px-3 py-1 text-xs font-semibold rounded-full shadow">{category.name}</span>
+                                <span key={category.id} className="inline-block bg-gray-700 text-white px-3 py-1 text-xs rounded-full mr-1">{category.name}</span>
                             ))}
                         </div>
                     </div>
@@ -84,13 +84,13 @@ export default function CardServices() {
                             alt={selectedService.name} 
                         />
                         {selectedService.status !== null && (
-                            <span className="absolute top-2 right-2 bg-gray-700 text-white px-3 py-1 rounded-full text-sm shadow-md">
+                            <span className="absolute top-2 right-2 bg-gray-700 text-white px-3 py-1 rounded-full text-sm">
                                 {selectedService.status.name}
                             </span>
                         )}
                         <div className="absolute top-2 left-2 space-y-1">
                             {Array.isArray(selectedService.categories) && selectedService.categories.map(category => (
-                                <span key={category.id} className="inline-block bg-gray-800 text-white px-3 py-1 text-xs font-semibold rounded-full shadow">{category.name}</span>
+                                <span key={category.id} className="inline-block bg-gray-700 text-white px-3 py-1 text-sm rounded-full mr-1">{category.name}</span>
                             ))}
                         </div>
                     </div>
