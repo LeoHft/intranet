@@ -20,6 +20,7 @@ Route::get('/posts', function () {
 
     //Services
     Route::get('/getServices', 'App\Http\Controllers\ServicesController@getServices'); // Récupère les services
+    Route::get('/getUserServices', 'App\Http\Controllers\ServicesController@getUserServices'); // Récupère les services d'un utilisateur
     Route::post('/storeService', 'App\Http\Controllers\ServicesController@store'); // Enregistre un service 
     Route::put('/updateService/{id}', 'App\Http\Controllers\ServicesController@update'); // Modifie un service
     Route::delete('/deleteService/{id}', 'App\Http\Controllers\ServicesController@destroy'); // Supprime un service

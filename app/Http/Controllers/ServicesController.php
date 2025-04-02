@@ -64,6 +64,16 @@ class ServicesController extends Controller
         return response()->json($services);
     }
 
+    public function getUserServices(): JsonResponse
+    {
+        $services = Services::with('categories', 'status', 'users')
+            ->whereHas('users', function ($query) {
+            $query->where('user_id', auth()->id());
+            })
+            ->get();
+        return response()->json($services);
+    }
+
     public function update(Request $request, $id): JsonResponse
     {
         $request->validate([

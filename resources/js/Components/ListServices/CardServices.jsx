@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import SecondaryButton from "@/Components/SecondaryButton";
-import DangerButton from "@/Components/DangerButton";
-import ModifyServiceForm from "@/Components/Services/ModifyServiceForm"; // Modifié pour Services
 import Modal from '../Modal';
 import dayjs from 'dayjs';
 import toast, { Toaster } from 'react-hot-toast';
@@ -13,9 +10,8 @@ export default function CardServices() {
     const [selectedService, setSelectedService] = useState(null);
 
     useEffect(() => {
-        axios.get('/api/getServices')
+        axios.get('/api/getUserServices')
         .then (response => {
-            console.log("Services fetched:", response.data); // Debugging line
             setServicesList(response.data);
         })
         .catch (error => {
