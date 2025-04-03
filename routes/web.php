@@ -6,6 +6,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'isAuthenticated' => Auth::check(),
@@ -27,7 +28,7 @@ Route::get('/dashboard', function () {
 Route::get('/adminDashboard', function () {
     // This route is only accessible to authenticated users
     return Inertia::render('AdminDashboard', []);
-})->middleware(['auth', 'verified'])->name('adminDashboard');
+})->middleware(['auth', 'verified', 'admin'])->name('adminDashboard');
 
 
 Route::middleware('auth')->group(function () {

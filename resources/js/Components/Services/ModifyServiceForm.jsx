@@ -97,7 +97,7 @@ export default function ModifyServiceForm({ service, onClose }) {
                     />
                 </div>
                 <div>
-                    <InputLabel htmlFor="description" value="Description" />
+                    <InputLabel htmlFor="description" value="Description max: 255" />
                     <textarea
                         id="description"
                         value={data.description}

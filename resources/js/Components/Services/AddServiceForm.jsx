@@ -103,7 +103,7 @@ export default function AddServiceForm() {
                         />
                     </div>
                     <div>   
-                        <InputLabel htmlFor="description" value="Description" />
+                        <InputLabel htmlFor="description" value="Description max: 255" />
                         <textarea
                             id="description"
                             ref={description}

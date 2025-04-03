@@ -64,7 +64,7 @@ export default function ModifyStatusForm({ status, onClose }) {
                     />
                 </div>
                 <div>
-                    <InputLabel htmlFor="description" value="Description" />
+                    <InputLabel htmlFor="description" value="Description max: 255" />
                     <TextInput
                         id="description"
                         ref={description}
