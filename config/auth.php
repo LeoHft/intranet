@@ -37,12 +37,12 @@ return [
 
     'guards' => [
         // 'web' => [
-        //     'driver' => 'session',
-        //     'provider' => 'users',
+        //     'driver' => 'session', // On utilise le driver de session pour l'authentification par session, nous on utilise l'authentification par cookie
+        //     'provider' => 'users', // Utilise le provider 'users' défini ci-dessous
         // ],
         'api' => [
             'driver' => 'sanctum',  // Utilise Sanctum pour les requêtes API
-            'provider' => 'users',
+            'provider' => 'users', // Utilise le provider 'users' défini ci-dessous
         ],
     ],
 

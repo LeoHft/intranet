@@ -3,11 +3,6 @@
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\ServicesController;
-use Laravel\Sanctum\HasApiTokens;
-use App\Http\Controllers\AuthController;
-
 
 Route::get('/user', function (Request $request) {
     return $request->user();
