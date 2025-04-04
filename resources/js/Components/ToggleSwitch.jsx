@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Check, X } from "lucide-react";
 import toast, { Toaster } from 'react-hot-toast';
+import { ToggleContext } from './ToggleContext';
 
 
 export default function ToggleSwitch() {
-    const [enabled, setEnabled] = useState(false);
+    const { enabled, setEnabled } = useContext(ToggleContext);
+
     const notification = () => {
         if (!enabled) { 
             toast.success('Accès depuis le réseau local');

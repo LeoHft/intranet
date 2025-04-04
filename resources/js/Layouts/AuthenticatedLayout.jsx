@@ -1,21 +1,27 @@
+import { useState, useEffect } from 'react';
+import { ToggleContext } from '@/Components/ToggleContext';
+import ToggleSwitch from '@/Components/ToggleSwitch';
+import { HouseWifi } from "lucide-react";
+import { Link, usePage } from '@inertiajs/react';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
-import { Link, usePage } from '@inertiajs/react';
-import { useState } from 'react';
-import ToggleSwitch from '@/Components/ToggleSwitch';
-import { HouseWifi  } from "lucide-react";
-
 
 
 export default function AuthenticatedLayout({ header, children }) {
     const user = usePage().props.auth.user;
 
-    const [showingNavigationDropdown, setShowingNavigationDropdown] =
-        useState(false);
+    const [enabled, setEnabled] = useState(() => localStorage.getItem('enabled') === 'true');
+
+    useEffect(() => {
+        localStorage.setItem('enabled', enabled);
+    }, [enabled]);
+
+    const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     return (
+        <ToggleContext.Provider value={{ enabled, setEnabled }}>
         <div className="min-h-screen bg-gray-100">
             <nav className="border-b border-gray-100 bg-white">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -187,5 +193,6 @@ export default function AuthenticatedLayout({ header, children }) {
 
             <main>{children}</main>
         </div>
+        </ToggleContext.Provider>
     );
 }

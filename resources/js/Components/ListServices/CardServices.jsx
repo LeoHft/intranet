@@ -3,8 +3,11 @@ import axios from 'axios';
 import Modal from '../Modal';
 import dayjs from 'dayjs';
 import toast, { Toaster } from 'react-hot-toast';
+import { ToggleContext } from '../ToggleContext';
+import { useContext } from 'react';
 
 export default function CardServices() {
+    const { enabled } = useContext(ToggleContext);
     const [servicesList, setServicesList] = useState([]);
     const [showingServiceModal, setShowingServiceModal] = useState(false);
     const [selectedService, setSelectedService] = useState(null);
@@ -51,11 +54,17 @@ export default function CardServices() {
                     <div className="p-4">
                         <div className="flex items-center justify-between">
                             <p className="font-bold text-lg">{service.name}</p>
-                            {service.internal_url && (
+                            { enabled ? (
+                            service.internal_url ? (
                             <a href={service.internal_url} target='blank' className="text-center bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-gray-300 transition">
                                 {service.internal_url}
                             </a>
-                            )}
+                            ) : (<p> Pas de lien dispo </p>)
+                            ) : (service.external_url ? (
+                                <a href={service.external_url} target='blank' className="text-center bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-gray-300 transition">
+                                {service.external_url}
+                            </a>
+                            ) :(<p> Pas de donnée </p>))}
                         </div>                         
                     </div>
                     <div className="p-4 pt-0">

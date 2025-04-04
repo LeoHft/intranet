@@ -1,18 +1,36 @@
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import { Link } from '@inertiajs/react';
+import NavLink from '@/Components/NavLink';
+import { useState } from 'react';
+import { HouseWifi } from 'lucide-react';
 
 export default function GuestLayout({ children }) {
     return (
-        <div className="flex min-h-screen flex-col items-center bg-gray-100 pt-6 sm:justify-center sm:pt-0">
-            <div>
-                <Link href="/">
-                    <ApplicationLogo className="h-20 w-20 fill-current text-gray-500" />
-                </Link>
-            </div>
+                <div className="min-h-screen bg-gray-100">
+                    <nav className="border-b border-gray-100 bg-white">
+                        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                            <div className="flex h-16 justify-between">
+                                <div className="flex">
+                                    <div className="flex shrink-0 items-center">
+                                        <Link href="/">
+                                            <HouseWifi className="h-7 w-7" />
+                                        </Link>
+                                    </div>
+        
+                                    <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                        <NavLink
+                                            href={route('login')}
+                                            active={route().current('login')}
+                                        >
+                                            Connexion
+                                        </NavLink>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
 
-            <div className="mt-6 w-full overflow-hidden bg-white px-6 py-4 shadow-md sm:max-w-md sm:rounded-lg">
-                {children}
-            </div>
-        </div>
+                    <main>{children}</main>
+                </div>
     );
 }
