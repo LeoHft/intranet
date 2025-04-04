@@ -29,16 +29,16 @@ export default function AuthenticatedLayout({ header, children }) {
                         <div className="flex">
                             <div className="flex shrink-0 items-center">
                                 <Link href="/">
-                                    <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
+                                    <HouseWifi className="h-7 w-7 hover:animate-bounce" />
                                 </Link>
                             </div>
 
-                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex ">
                                 <NavLink
                                     href={route('dashboard')}
                                     active={route().current('dashboard')}
                                 >
-                                    Dashboard
+                                    Menu
                                 </NavLink>
                             </div>
                             {user.is_admin ? (
@@ -47,7 +47,7 @@ export default function AuthenticatedLayout({ header, children }) {
                                         href={route('adminDashboard')}
                                         active={route().current('adminDashboard')}
                                     >
-                                        Admin Dashboard
+                                        Menu Administrateur
                                     </NavLink>
                                 </div>
                             ) : null}
@@ -85,7 +85,7 @@ export default function AuthenticatedLayout({ header, children }) {
                                         <Dropdown.Link
                                             href={route('profile.edit')}
                                         >
-                                            Profile
+                                            Profil
                                         </Dropdown.Link>
                                         <Dropdown.Link
                                             href={route('logout')}
@@ -153,7 +153,7 @@ export default function AuthenticatedLayout({ header, children }) {
                             href={route('dashboard')}
                             active={route().current('dashboard')}
                         >
-                            Dashboard
+                            Menu
                         </ResponsiveNavLink>
                     </div>
 
@@ -169,7 +169,7 @@ export default function AuthenticatedLayout({ header, children }) {
 
                         <div className="mt-3 space-y-1">
                             <ResponsiveNavLink href={route('profile.edit')}>
-                                Profile
+                                Profil
                             </ResponsiveNavLink>
                             <ResponsiveNavLink
                                 method="post"

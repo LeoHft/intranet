@@ -43,7 +43,7 @@ export default function AdminDashboard() {
                     </TabsList>
 
                     <TabsContent value="overview" className="space-y-8">
-                        <p> duihfiufhef </p>
+                        <p> Statistiques prochainements </p>
                     </TabsContent>
 
 
