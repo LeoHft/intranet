@@ -3,7 +3,6 @@ import { ToggleContext } from '@/Components/ToggleContext';
 import ToggleSwitch from '@/Components/ToggleSwitch';
 import { HouseWifi } from "lucide-react";
 import { Link, usePage } from '@inertiajs/react';
-import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
@@ -53,8 +52,9 @@ export default function AuthenticatedLayout({ header, children }) {
                             ) : null}
                         </div>
                         <div className="hidden sm:ms-6 sm:flex sm:items-center">
-                            <ToggleSwitch />
-                            <HouseWifi />
+                            {user.is_admin ? (
+                                <ToggleSwitch />
+                            ) : null}
                             <div className="relative ms-3">
                                 <Dropdown>
                                     <Dropdown.Trigger>

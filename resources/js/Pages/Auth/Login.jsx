@@ -31,8 +31,8 @@ export default function Login({ status, canResetPassword }) {
                 </div>
             )}
 
-            <div className="flex items-center justify-center min-h-screen">
-                <form onSubmit={submit} className="rounded-md shadow-xl p-6 max-w-96 mx-auto">
+            <div className="flex items-center justify-center pt-50">
+                <form onSubmit={submit} className="rounded-md shadow-xl p-6 max-w-96 mx-auto w-full">
                     <div>
                         <InputLabel htmlFor="email" value="Email" />
 
@@ -87,11 +87,11 @@ export default function Login({ status, canResetPassword }) {
                                 href={route('password.request')}
                                 className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                             >
-                                Mot de passe oublié?
+                                Mot de passe oublié ?
                             </Link>
                         )}
 
-                        <PrimaryButton className="ms-4" disabled={processing}>
+                        <PrimaryButton className="ms-4 text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" disabled={processing}>
                             Connexion
                         </PrimaryButton>
                     </div>

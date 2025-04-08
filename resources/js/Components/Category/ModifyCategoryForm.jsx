@@ -4,7 +4,7 @@ import InputLabel from "../InputLabel";
 import TextInput from "../TextInput";
 import { useForm } from '@inertiajs/react';
 import axios from 'axios';
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from "react-hot-toast";
 
 
 export default function ModifyCategoryForm({ category, onClose }) {
