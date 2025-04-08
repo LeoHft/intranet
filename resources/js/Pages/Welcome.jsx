@@ -16,7 +16,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
 
     return (
         <GuestLayout>
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center pt-8">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center pt-8 min-h-screen">
                 <Head title="Bienvenue" />
                 <p className="font-serif text-3xl"> Votre intranet personnel et open source </p>
                 <p className="font-serif text-xl"> Par HOFSTETTER Léo </p>

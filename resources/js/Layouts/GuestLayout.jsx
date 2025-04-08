@@ -6,7 +6,7 @@ import { HouseWifi } from 'lucide-react';
 
 export default function GuestLayout({ children }) {
     return (
-                <div className="bg-[url('/background.jpg')] bg-cover bg-no-repeat bg-center h-screen">
+                <div className="bg-[url('/background.jpg')] bg-cover bg-no-repeat bg-center">
                     <nav>
                         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                             <div className="flex h-16 justify-between">

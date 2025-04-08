@@ -68,7 +68,7 @@ export default function CardServices() {
                         </div>                         
                     </div>
                     <div className="p-4 pt-0">
-                        <button type="submit" onClick={() => DetailService(service)} className="w-full bg-purple-500 text-white py-2 rounded-md hover:bg-purple-700 transition duration-300 ease-in-out">
+                        <button type="submit" onClick={() => DetailService(service)} className="w-full text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 text-white py-2 rounded-md transition duration-300 ease-in-out">
                             Détails
                         </button>
                     </div>

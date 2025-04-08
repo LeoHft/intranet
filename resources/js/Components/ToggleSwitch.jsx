@@ -26,7 +26,7 @@ export default function ToggleSwitch() {
                         notification();
                     }}
                     className={`relative flex h-6 w-12 items-center rounded-full transition 
-                        ${enabled ? "bg-indigo-600" : "bg-gray-300"} border-2 border-indigo-500`}
+                        ${enabled ? "bg-purple-400" : "bg-pink-200"} border-2 border-purple-500`}
                 >
                     <div
                         className={`absolute left-0 flex h-5 w-5 items-center justify-center rounded-full bg-white transition-all 

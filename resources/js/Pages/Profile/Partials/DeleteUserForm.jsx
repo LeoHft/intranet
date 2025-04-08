@@ -54,9 +54,7 @@ export default function DeleteUserForm({ className = '' }) {
 
                 <p className="mt-1 text-sm text-gray-600">
                     Une fois votre compte supprimé, toutes ses ressources et
-                    données seront définitivement supprimées. Avant de supprimer
-                    votre compte, veuillez télécharger toutes les données ou
-                    informations que vous souhaitez conserver.
+                    données seront définitivement supprimées.
                 </p>
             </header>
 

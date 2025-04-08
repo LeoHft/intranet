@@ -52,7 +52,7 @@ export default function ListServices() {
     return (
         <>
             <table className="table-auto border-collapse border border-gray-400 h-full w-full">
-                <thead className="bg-gray-200">
+                <thead>
                     <tr className="border border-gray-400">
                         <th className="border border-gray-400 px-4">Nom</th>
                         <th className="border border-gray-400 px-4">Description</th>

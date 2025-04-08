@@ -31,7 +31,7 @@ export default function Login({ status, canResetPassword }) {
                 </div>
             )}
 
-            <div className="flex items-center justify-center pt-50">
+            <div className="flex items-center justify-center min-h-screen">
                 <form onSubmit={submit} className="rounded-md shadow-xl p-6 max-w-96 mx-auto w-full">
                     <div>
                         <InputLabel htmlFor="email" value="Email" />
