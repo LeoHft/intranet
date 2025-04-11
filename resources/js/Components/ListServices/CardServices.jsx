@@ -5,8 +5,11 @@ import dayjs from 'dayjs';
 import toast, { Toaster } from 'react-hot-toast';
 import { ToggleContext } from '../ToggleContext';
 import { useContext } from 'react';
+import { usePage } from '@inertiajs/react';
+
 
 export default function CardServices() {
+    const user = usePage().props.auth.user;
     const { enabled } = useContext(ToggleContext);
     const [servicesList, setServicesList] = useState([]);
     const [showingServiceModal, setShowingServiceModal] = useState(false);
@@ -64,7 +67,7 @@ export default function CardServices() {
                                 <a href={service.external_url} target='blank' className="text-center bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-gray-300 transition">
                                 {service.external_url}
                             </a>
-                            ) :(<p> Pas de donnée </p>))}
+                            ) :(<p> Pas de lien dispo </p>))}
                         </div>                         
                     </div>
                     <div className="p-4 pt-0">
@@ -111,11 +114,11 @@ export default function CardServices() {
                                 <p className="text-gray-500 text-sm"> Modifié le : {dayjs(selectedService.modified_at).format('DD/MM/YYYY')} </p>
                             </div>
                             <div className="flex flex-col space-y-2 justify-end">
-                                {selectedService.internal_url && (
+                                {selectedService.internal_url && user.is_admin ? (
                                 <a href={selectedService.internal_url} target='blank' className="text-center bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-gray-300 transition">
                                     {selectedService.internal_url}
                                 </a>
-                                )}
+                                ) : null}
                                 {selectedService.external_url && (
                                     <a href={selectedService.external_url} target='blank' className="text-center bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-gray-300 transition ">
                                         {selectedService.external_url}

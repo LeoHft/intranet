@@ -52,7 +52,7 @@ export default function ListUsers() {
 
     return (
         <>
-        <table className="table-auto border-collapse border border-gray-400 w-full h-full">
+        <table className="table-auto border-collapse border border-gray-400 w-full h-full bg-rose-50">
             <thead>
                 <tr className="border border-gray-400">
                     <th className="border border-gray-400 px-4">Nom</th>
