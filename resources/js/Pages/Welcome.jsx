@@ -36,6 +36,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                         trigger: el,
                         start: "top 80%",
                         toggleActions: "play none none none",
+                        markers: false,
                     },
                     duration: 1,
                     delay: i * 0.2
