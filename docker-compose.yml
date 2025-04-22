@@ -1,0 +1,54 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: intranet-app:latest
+    container_name: intranet-app
+    restart: always
+    expose: 
+      - "9000"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=intranet-db
+      - DB_PORT=3306
+    networks:
+      - intranet-net
+    volumes:
+      - app_data:/var/www
+  db:
+    image: mariadb:10.11
+    container_name: intranet-db
+    restart: always
+    environment:
+      MARIADB_DATABASE: intranet
+      MARIADB_ROOT_PASSWORD: secret
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - intranet-net
+
+  nginx:
+    image: nginx:stable-alpine
+    container_name: intranet-nginx
+    restart: always
+    ports:
+      - "8080:80"
+    depends_on:
+      - app
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - app_data:/var/www
+    networks:
+      - intranet-net
+
+volumes:
+  db_data:
+  app_data:
+
+networks:
+  intranet-net:
+    driver: bridge

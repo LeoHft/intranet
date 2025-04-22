@@ -15,12 +15,14 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'admin',
-            'email' => 'admin@example.com',
-            'password' => bcrypt('password'),
-            'is_admin' => true,
-        ]);
+        User::firstOrCreate(
+            ['email' => 'admin@example.com'],
+            [
+                'name' => 'admin',
+                'password' => bcrypt('password'),
+                'is_admin' => true,
+            ]
+        );
 
 
         DB::table('categories')->insert([
@@ -45,7 +47,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'test service description',
             'internal_url' => 'http://localhost:8000',
             'external_url' => 'https://testservice.com',
-            'image_url' => 'http://127.0.0.1:8000/storage/images/no-photo-available.jpg',
+            'image_url' => 'http://localhost:8080/storage/images/no-photo-available.jpg',
             'status_id' => 1,
             'created_at' => now(),
             'updated_at' => now(),
