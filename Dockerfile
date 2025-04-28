@@ -1,23 +1,31 @@
-FROM php:8.2-fpm
-
-# 1. Dépendances système + Node.js
-RUN apt-get update \
-  && apt-get install -y build-essential libpng-dev libjpeg-dev libonig-dev \
-     libxml2-dev zip unzip curl git gnupg netcat-openbsd \
-  && curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
-  && apt-get install -y nodejs \
-  && rm -rf /var/lib/apt/lists/*
+FROM php:8.3-rc-fpm
 
 WORKDIR /var/www
 
-# 2. Extensions PHP & Composer
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
-
-# 3. Copier uniquement le code
 COPY . .
 
-# 4. Entrypoint
+# Installation de NodeJS et des dépendances
+RUN apt-get update \
+  && apt-get install -y build-essential libpng-dev libjpeg-dev libonig-dev \
+     libxml2-dev libzip-dev pkg-config zip unzip curl gnupg netcat-openbsd \
+  && curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
+  && apt-get install -y nodejs
+
+# Installation de composer
+RUN curl -sLS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer \
+  && docker-php-ext-configure intl \
+  && docker-php-ext-install intl mbstring dom gd zip bcmath opcache pdo \
+  && docker-php-ext-install mysqli pdo_mysql \
+  && apt-get -y autoremove  \
+  && apt-get clean  \
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN composer install --no-dev --optimize-autoloader \
+  && npm ci
+
+RUN npm run build
+
+# Entrypoint
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 

@@ -14,21 +14,12 @@ if [ ! -f /var/www/.env ]; then
 fi
 
 if [ -z "$APP_KEY" ]; then
-  php artisan key:generate --force
+  php artisan key:generate
 fi
-
-# 3. Install PHP dependencies
-echo "Installation des dépendances PHP..."
-composer install --no-dev --optimize-autoloader --prefer-dist --no-interaction
-
-# 4. Install JS dependencies & build assets
-echo "Installation des dépendances JS et build des assets..."
-npm ci
-npm run build
 
 # 5. Migrations
 echo "Exécution des migrations..."
-php artisan migrate --seed --force
+php artisan migrate --seed --force -n
 echo "Migrations effectuées !"
 
 php artisan storage:link
