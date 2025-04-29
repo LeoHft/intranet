@@ -15,11 +15,11 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie'],
-
+    'paths' => ['api/*', 'sanctum/csrf-cookie', 'build/*'],
+    
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://localhost:8080', 'http://localhost:8000', 'http://localhost:5173', 'http://127.0.0.1:8000', 'http://127.0.0.1:5173'], //domaines autorisés pour les requêtes CORS
+    'allowed_origins' => ['http://192.168.1.62:8080', 'https://intranet.hofstetterlab.ovh', 'http://localhost:8000', 'http://localhost:5173', 'http://127.0.0.1:8000', 'http://127.0.0.1:5173'], //domaines autorisés pour les requêtes CORS
 
     'allowed_origins_patterns' => [],
 

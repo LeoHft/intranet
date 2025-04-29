@@ -1,19 +1,6 @@
 version: "3.9"
 
 services:
-  nginx:
-    image: nginx:latest
-    container_name: intranet-nginx
-    #restart: always
-    ports:
-      - "8088:80"
-    volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf
-      - app_data:/var/www:ro
-    networks:
-      - intranet-net
-
-
   db:
     image: mariadb:10.11
     container_name: intranet-db
@@ -56,6 +43,20 @@ services:
       - intranet-net
     volumes:
       - app_data:/var/www
+
+  nginx:
+    image: nginx:latest
+    container_name: intranet-nginx
+    #restart: always
+    depends_on:
+      - intranet-app
+    ports:
+      - "8088:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - app_data:/var/www:ro
+    networks:
+      - intranet-net
 
 
 volumes:
