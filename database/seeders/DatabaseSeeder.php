@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'test service description',
             'internal_url' => 'http://localhost:8000',
             'external_url' => 'https://testservice.com',
-            'image_url' => 'http://localhost:8080/storage/images/no-photo-available.jpg',
+            'image_url' => 'http://localhost:8088/storage/images/no-photo-available.jpg',
             'status_id' => 1,
             'created_at' => now(),
             'updated_at' => now(),

@@ -29,5 +29,9 @@ echo "Mise à jour des permissions..."
 chown -R www-data:www-data storage bootstrap/cache public/build
 chmod -R 775 storage bootstrap/cache public/build
 
+echo "Création du lien symbolique storage..."
+rm -rf /var/www/public/storage
+php artisan storage:link
+
 # 7. Démarrage de PHP-FPM
 exec php-fpm
