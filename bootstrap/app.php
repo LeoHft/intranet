@@ -24,7 +24,6 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->api(prepend: [
             \Illuminate\Cookie\Middleware\EncryptCookies::class, // crypte/décrypte les cookies
-            \Illuminate\Session\Middleware\StartSession::class,  //démarre la session pour la requête en cours
             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class, //distinguer les requêtes « stateful » (celles qui proviennent d’un navigateur ou d’une SPA) des autres requêtes
         ]);
     })
