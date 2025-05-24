@@ -13,6 +13,8 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     //Applications des middlewares globalement à toute l'app ! 
     ->withMiddleware(function (Middleware $middleware) {
+        $middleware->trustProxies(at: '*'); // Permet de faire confiance aux proxies, utile pour les applications derrière un proxy inverse comme Nginx ou Apache
+
         $middleware->web(append: [
             \App\Http\Middleware\HandleInertiaRequests::class,
             \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
