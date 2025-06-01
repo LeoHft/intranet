@@ -13,6 +13,8 @@ if [ ! -f /var/www/.env ]; then
   cp /var/www/.env.example /var/www/.env
 fi
 
+
+# 4. Vérification de APP_KEY et génération si nécessaire
 if [ -z "$APP_KEY" ]; then
   php artisan key:generate
 fi

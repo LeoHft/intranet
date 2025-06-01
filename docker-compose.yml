@@ -6,8 +6,18 @@ services:
     ports:
       - "8088:80"
     volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx.conf.template:/etc/nginx/conf.d/default.conf.template:ro
+      - ./generate-nginx.sh:/generate-nginx.sh:ro
       - app_data:/var/www:ro
+    depends_on:
+      - app
+    environment:
+      - APP_DOMAIN=${APP_DOMAIN}
+    command: >
+      /bin/bash -c "
+        envsubst '\$APP_DOMAIN' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf &&
+        nginx -g 'daemon off;'
+      "
     networks:
       - intranet-net
 

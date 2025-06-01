@@ -5,10 +5,7 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
-import axios from 'axios';
 
-axios.defaults.withCredentials = true
-axios.defaults.withXSRFToken = true
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -20,15 +17,9 @@ export default function Login({ status, canResetPassword }) {
     const submit = (e) => {
         e.preventDefault();
 
-        axios.get('/sanctum/csrf-cookie').then(() => {
-            axios.post('/login', {
-                email: data.email,
-                password: data.password,
-                remember: data.remember,
-            }).catch((error) => {
-                console.error('Login failed:', error);
-            });
-        })
+        post(route('login'), {
+            onFinish: () => reset('password'),
+        });
     };
 
     return (

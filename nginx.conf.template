@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name subdomain.domain.com; # TODO : Remplacez par votre sous-domaine
+    server_name ${APP_DOMAIN};
 
     root /var/www/public;
     index index.php index.html;
