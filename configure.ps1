@@ -6,7 +6,6 @@ $db_username_var = "root"
 $db_password_var = "secret"
 
 Remove-Item ".env" -Force -ErrorAction SilentlyContinue
-Remove-Item ".env.prod" -Force -ErrorAction SilentlyContinue
 Clear-Host
 Write-Host ""
 Write-Host "========================================================================" -ForegroundColor Cyan
@@ -35,10 +34,9 @@ if ($devMode -match '^[oOyY]$') {
 } else {
 
     if (Test-Path ".env") { Remove-Item ".env" }
-    if (Test-Path ".env.prod") { Remove-Item ".env.prod" }
 
-    cp ".env.example" ".env.prod"
-    $envFile = ".env.prod"
+    cp ".env.example" ".env"
+    $envFile = ".env"
     # Mode production
     Write-Host "`nFichier .env.example deja existant, avec une configuration pour acceder a l'application en" -NoNewline; Write-Host " http://127.0.0.1" -ForegroundColor Cyan
     $reconfigure = Read-Host "Souhaitez-vous le reconfigurer pour y acceder avec une autre adresse (ex : https://subdomain.domain.com) ? (o/N)"
@@ -76,7 +74,7 @@ if ($devMode -match '^[oOyY]$') {
     } else {
         $content = $content -replace '^APP_URL=.*', "APP_URL=${protocol}://${domain}:8088"
         $content = $content -replace '^FRONTEND_URL=.*', "FRONTEND_URL=${protocol}://${domain}:8088"
-        $content = $content -replace '^CORS_ALLOWED_ORIGINS=.*', "CORS_ALLOWED_ORIGINS=${protocol}://${domain}:8088,${protocol}://${domain}:5173"
+        $content = $content -replace '^CORS_ALLOWED_ORIGINS=.*', "CORS_ALLOWED_ORIGINS=${protocol}://${domain}:8088"
         $content = $content -replace '^SANCTUM_STATEFUL_DOMAINS=.*', "SANCTUM_STATEFUL_DOMAINS=${domain}:8088"
     }
 
@@ -99,7 +97,7 @@ if ($devMode -match '^[oOyY]$') {
     Set-Content $envFile $content
 
 
-    Write-Host "`n.env.example configure. Lancement de docker ..."
+    Write-Host "`n.env configure. Lancement de docker ..."
     docker compose --profile production up --build
 
 }
