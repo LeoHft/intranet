@@ -1,1 +1,1 @@
-<h1> See wifi for more information </h1>
+<h1> See wiki for more information </h1>
