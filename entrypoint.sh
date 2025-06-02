@@ -10,7 +10,7 @@ echo "MariaDB disponible !"
 
 # 2. .env et APP_KEY
 if [ ! -f /var/www/.env ]; then
-  cp /var/www/.env.preprod /var/www/.env
+  cp /var/www/.env.prod /var/www/.env
 fi
 
 
