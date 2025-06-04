@@ -13,7 +13,7 @@ Write-Host "               Configuration de l'application Intranet              
 Write-Host "========================================================================" -ForegroundColor Cyan
 Write-Host ""
 
-Write-Host "Ce script vous guide dans la configuration de l'environnement :" -ForegroundColor White
+Write-Host "Ce script va vous guider dans la configuration de l'environnement :" -ForegroundColor White
 Write-Host ""
 Write-Host "=> Mode " -NoNewline; Write-Host "developpement" -ForegroundColor Yellow
 Write-Host "  - Requiert Docker et Docker Compose installes sur votre machine." -ForegroundColor Gray
@@ -22,6 +22,9 @@ Write-Host ""
 
 Write-Host "=> Mode " -NoNewline; Write-Host "production" -ForegroundColor Green
 Write-Host "  - Requiert Docker et Docker Compose installes sur votre machine." -ForegroundColor Gray
+Write-Host ""
+
+Write-Host "Pour plus d'information, regardez le wiki sur le projet Github." -ForegroundColor Green
 Write-Host ""
 
 Write-Host "Souhaitez-vous demarrer en mode " -NoNewline; Write-Host "developpement ?" -ForegroundColor Yellow  -NoNewline; $devMode = Read-Host "  (o/N)"
