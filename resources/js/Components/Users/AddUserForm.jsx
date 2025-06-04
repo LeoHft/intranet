@@ -7,7 +7,7 @@ import { useState } from 'react';
 import Modal from '@/Components/Modal';
 import toast, {Toaster} from 'react-hot-toast';
 
-export default function AddUserForm() {
+export default function AddUserForm({ onUserAdded}) {
     const [showingAddUserModal, setShowingAddUserModal] = useState(false);
     const { data, setData, errors, reset } = useForm({
         name: '',
@@ -34,6 +34,7 @@ export default function AddUserForm() {
             reset();
             setShowingAddUserModal(false);
             toast.success('Utilisateur ajouté avec succès');
+            onUserAdded();
         }).catch(error => {
             console.error("Error adding Category:", error);
             toast.error('Erreur lors de l\'ajout de l\'utilisateur');

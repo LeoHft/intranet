@@ -7,7 +7,7 @@ import Modal from '../Modal';
 import dayjs from 'dayjs';
 import toast, { Toaster } from 'react-hot-toast';
 
-export default function ListCategory() {
+export default function ListCategory({ refreshTrigger }) {
     const [categoriesList, setCategoriesList] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [showModalModifyCategory, setShowModalModifyCategory] = useState(false);
@@ -15,6 +15,10 @@ export default function ListCategory() {
 
 
     useEffect(() => {
+        fetchCategories();
+    }, [refreshTrigger]);
+
+    const fetchCategories = () => { 
         axios.get('/api/getCategories')
             .then(response => {
                 setCategoriesList(response.data);
@@ -23,7 +27,7 @@ export default function ListCategory() {
                 toast.error('Erreur lors de la récupération des catégories');
                 console.error("Error fetching categories:", error);
             });
-    }, []);
+    }
 
     const ModifyCategory = (category) => {
         setSelectedCategory(category);
@@ -88,7 +92,7 @@ export default function ListCategory() {
         {showModalModifyCategory && (
             <ModifyCategoryForm
                 category={selectedCategory}
-                onClose={() => setShowModalModifyCategory(false)}
+                onClose={() => setShowModalModifyCategory(false) & fetchCategories()}
             />
         )}
 

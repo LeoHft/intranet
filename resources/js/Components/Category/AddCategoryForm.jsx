@@ -7,7 +7,7 @@ import { useForm } from '@inertiajs/react';
 import { useRef } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
-export default function AddCategoryForm() {
+export default function AddCategoryForm({ onCategoryAdded }) {
     const [showingAddCategoryModal, setShowingAddCategoryModal] = useState(false);
     const name = useRef();
     const description = useRef();
@@ -36,6 +36,7 @@ export default function AddCategoryForm() {
             reset();
             setShowingAddCategoryModal(false);
             toast.success('Catégorie ajoutée avec succès');
+            onCategoryAdded();
         }).catch(error => {
             console.error("Error adding Category:", error);
             toast.error('Erreur lors de l\'ajout de la catégorie');

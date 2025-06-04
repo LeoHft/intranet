@@ -16,8 +16,9 @@ import { useForm } from '@inertiajs/react';
 import { useRef } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import UsersSelect from "../Users/UsersSelect";
+import ListServices from "@/Components/Services/ListServices";
 
-export default function AddServiceForm() {
+export default function AddServiceForm({ onServiceAdded}) {
     const [showingAddServiceModal, setShowingAddServiceModal] = useState(false);
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [selectedUsers, setSelectedUsers] = useState([]);
@@ -72,6 +73,7 @@ export default function AddServiceForm() {
             console.log("Service ajouté :", response.data);
             reset();
             setShowingAddServiceModal(false);
+            onServiceAdded();
         })
         .catch(error => {
             toast.error('Erreur lors de l\'ajout du service');

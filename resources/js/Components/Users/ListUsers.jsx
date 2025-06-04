@@ -7,7 +7,7 @@ import Modal from '../Modal';
 import dayjs from 'dayjs';
 import toast, { Toaster } from 'react-hot-toast';
 
-export default function ListUsers() {
+export default function ListUsers({ refreshTrigger }) {
     const [usersList, setUsersList] = useState([]);
     const [selectedUser, setSelectedUser] = useState(null);
     const [showModalModifyUser, setShowModalModifyUser] = useState(false);
@@ -15,6 +15,10 @@ export default function ListUsers() {
 
 
     useEffect(() => {
+        fetchUsers();
+    }, [refreshTrigger]);
+
+    const fetchUsers = () => {
         axios.get('/api/getUsers')
             .then(response => {
                 console.log("Users fetched:", response.data); // Debugging line
@@ -24,7 +28,8 @@ export default function ListUsers() {
                 toast.error('Erreur lors de la récupération des utilisateurs');
                 console.error("Error fetching users:", error);
             });
-    }, []);
+    }
+
 
     const ModifyUser = (user) => {
         setSelectedUser(user);
@@ -109,7 +114,7 @@ export default function ListUsers() {
         {showModalModifyUser && (
             <ModifyUserForm
                 user={selectedUser}
-                onClose={() => setShowModalModifyUser(false)}
+                onClose={() => setShowModalModifyUser(false) & fetchUsers()}
             />
         )}
 

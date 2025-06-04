@@ -7,7 +7,7 @@ import { useForm } from '@inertiajs/react';
 import { useRef } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
-export default function AddStatusForm() {
+export default function AddStatusForm({ onStatusAdded }) {
     const [showingAddStatusModal, setShowingAddStatusModal] = useState(false);
     const name = useRef();
     const description = useRef();
@@ -36,6 +36,7 @@ export default function AddStatusForm() {
             toast.success('Statut ajouté avec succès');
             reset();
             setShowingAddStatusModal(false);
+            onStatusAdded();
         }).catch(error => {
             console.error("Error adding Status:", error);
             toast.error('Erreur lors de l\'ajout du statut');

@@ -8,7 +8,7 @@ import dayjs from 'dayjs';
 import toast, { Toaster } from 'react-hot-toast';
 
 
-export default function ListStatus() {
+export default function ListStatus({ refreshTrigger }) {
     const [StatusList, setStatusList] = useState([]);
     const [selectedStatus, setSelectedStatus] = useState(null);
     const [showModalModifyStatus, setShowModalModifyStatus] = useState(false);
@@ -16,6 +16,10 @@ export default function ListStatus() {
 
 
     useEffect(() => {
+        fetchStatus();
+    }, [refreshTrigger]);
+
+    const fetchStatus = () => {
         axios.get('/api/getStatus')
             .then(response => {
                 setStatusList(response.data);
@@ -24,7 +28,7 @@ export default function ListStatus() {
                 console.error("Error fetching Status:", error);
                 toast.error('Erreur lors de la récupération des statuts');
             });
-    }, []);
+    }
 
     const ModifyStatus = (status) => {
         setSelectedStatus(status);
@@ -89,7 +93,7 @@ export default function ListStatus() {
         {showModalModifyStatus && (
             <ModifyStatusForm
                 status={selectedStatus}
-                onClose={() => setShowModalModifyStatus(false)}
+                onClose={() => setShowModalModifyStatus(false) & fetchStatus()}
             />
         )}
 

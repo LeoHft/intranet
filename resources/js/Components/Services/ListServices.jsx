@@ -7,13 +7,17 @@ import Modal from '../Modal';
 import dayjs from 'dayjs';
 import toast, { Toaster } from 'react-hot-toast';
 
-export default function ListServices() {
+export default function ListServices({ refreshTrigger }) {
     const [servicesList, setServicesList] = useState([]);
     const [selectedService, setSelectedService] = useState(null);
     const [showModalModifyService, setShowModalModifyService] = useState(false);
     const [showModalDeleteService, setShowModalDeleteService] = useState(false);
 
     useEffect(() => {
+        fetchServices();
+    }, [refreshTrigger]);
+
+    const fetchServices = () => {
         axios.get('/api/getServices')
             .then(response => {
                 console.log("Services fetched:", response.data); // Debugging line
@@ -23,7 +27,7 @@ export default function ListServices() {
                 console.error("Error fetching services:", error);
                 toast.error('Erreur lors de la récupération des services');
             });
-    }, []);
+    };
 
     const modifyService = (service) => {
         setSelectedService(service);
@@ -124,7 +128,7 @@ export default function ListServices() {
             {showModalModifyService && (
                 <ModifyServiceForm
                     service={selectedService}
-                    onClose={() => setShowModalModifyService(false)}
+                    onClose={() => setShowModalModifyService(false) & fetchServices()}
                 />
             )}
 
